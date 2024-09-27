@@ -3,7 +3,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '@/redux/store';
 import { toggleColorMode } from '@/redux/reducers/colorMode/colorModeSlice';
-import '@/less/params.less';
+import '@/style/params.scss';
 
 type ColorMode = 'light' | 'dark';
 

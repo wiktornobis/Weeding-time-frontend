@@ -1,5 +1,5 @@
 import Head from "@/ts/helpers/Head.tsx";
-import '@/less/home.less';
+import '@/style/home.scss';
 
 import HeroLogo from "@/ts/components/HeroLogo.tsx";
 

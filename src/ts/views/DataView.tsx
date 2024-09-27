@@ -1,4 +1,4 @@
-import '@/less/headerInfiniteAnimation.less';
+import '@/style/headerInfiniteAnimation.scss';
 
 import Head from "@/ts/helpers/Head.tsx";
 import HeaderInfiniteAnimation from "@/ts/components/HeaderInfiniteAnimation.tsx";

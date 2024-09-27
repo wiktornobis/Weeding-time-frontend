@@ -1,133 +1,130 @@
 import * as React from 'react';
-import {useContext} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {Brightness4, Brightness7} from '@mui/icons-material';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import {ColorModeContext} from '@/ts/theme/ToggleColorMode';
-import logo from '@/assets/logo.png';
-import logoWhite from '@/assets/logo-white.png';
+import { createTheme } from '@mui/material/styles';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import DescriptionIcon from '@mui/icons-material/Description';
+import LayersIcon from '@mui/icons-material/Layers';
+import { AppProvider } from '@toolpad/core/AppProvider';
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+import type { Router, Navigation } from '@toolpad/core';
 
-const pages = [
-    { id: 1, name: 'Newsy', path: '/newsy' },
-    { id: 2, name: 'Dane', path: '/dane' },
-    { id: 3, name: 'Uczelnie', path: '/uczelnie' }
+const NAVIGATION: Navigation = [
+    {
+        kind: 'header',
+        title: 'Main items',
+    },
+    {
+        segment: '/',
+        title: 'Strona Glowna',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: '/orders',
+        title: 'Orders',
+        icon: <ShoppingCartIcon />,
+    },
+    {
+        kind: 'divider',
+    },
+    {
+        kind: 'header',
+        title: 'Analytics',
+    },
+    {
+        segment: '/reports',
+        title: 'Reports',
+        icon: <BarChartIcon />,
+        children: [
+            {
+                segment: '/reports/sales',
+                title: 'Sales',
+                icon: <DescriptionIcon />,
+            },
+            {
+                segment: 'reports/traffic',
+                title: 'Traffic',
+                icon: <DescriptionIcon />,
+            },
+        ],
+    },
+    {
+        segment: '/integrations',
+        title: 'Integrations',
+        icon: <LayersIcon />,
+    },
 ];
 
-function Nav() {
-    const colorMode = useContext(ColorModeContext);
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const navigate = useNavigate();
+const demoTheme = createTheme({
+    cssVariables: {
+        colorSchemeSelector: 'data-toolpad-color-scheme',
+    },
+    colorSchemes: { light: true, dark: true },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 600,
+            md: 600,
+            lg: 1200,
+            xl: 1536,
+        },
+    },
+});
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
-        setAnchorElNav(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = (): void => {
-        setAnchorElNav(null);
-    };
-
-    const handleNavigation = (path: string): void => {
-        navigate(path);
-        handleCloseNavMenu();
-    };
-
+function DemoPageContent({ pathname }: { pathname: string }) {
     return (
-        <AppBar position="sticky">
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Box
-                        component="img"
-                        src={colorMode.mode === 'light' ? logo : logoWhite}
-                        alt="logo"
-                        sx={{
-                            display: { xs: 'none', md: 'block' },
-                            width: 70,
-                            height: 70
-                        }}
-                        loading="lazy"
-                        onClick={() => handleNavigation("/")}
-                    />
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page.id} onClick={() => handleNavigation(page.path)}>
-                                    <Typography textAlign="center">{page.name}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-
-                    <Box
-                        component="img"
-                        src={colorMode.mode === 'light' ? logo : logoWhite}
-                        alt="logo"
-                        sx={{
-                            display: { xs: 'block', md: 'none' },
-                            width: 70,
-                            height: 70
-                        }}
-                        loading="lazy"
-                        onClick={() => handleNavigation("/")}
-                    />
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page.id}
-                                onClick={() => handleNavigation(page.path)}
-                                sx={{ my: 1, color: 'white', display: 'block' }}
-                            >
-                                {page.name}
-                            </Button>
-                        ))}
-                    </Box>
-                    <IconButton
-                        edge="end"
-                        color="inherit"
-                        aria-label="mode"
-                        onClick={colorMode.toggleColorMode}
-                    >
-                        {colorMode.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
-                    </IconButton>
-                </Toolbar>
-            </Container>
-        </AppBar>
+        <Box
+            sx={{
+                py: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+            }}
+        >
+            <Typography>Dashboard content for {pathname}</Typography>
+        </Box>
     );
 }
 
-export default Nav;
+interface DemoProps {
+    /**
+     * Injected by the documentation to work in an iframe.
+     * Remove this when copying and pasting into your project.
+     */
+    window?: () => Window;
+}
+
+export default function DashboardLayoutBasic(props: DemoProps) {
+    const { window } = props;
+
+    const [pathname, setPathname] = React.useState('/');
+
+    const router = React.useMemo<Router>(() => {
+        return {
+            pathname,
+            searchParams: new URLSearchParams(),
+            navigate: (path) => setPathname(String(path)),
+        };
+    }, [pathname]);
+
+    // Remove this const when copying and pasting into your project.
+    const demoWindow = window !== undefined ? window() : undefined;
+
+    return (
+        // preview-start
+        <AppProvider
+            navigation={NAVIGATION}
+            router={router}
+            theme={demoTheme}
+            window={demoWindow}
+        >
+            <DashboardLayout>
+                <DemoPageContent pathname={pathname} />
+            </DashboardLayout>
+        </AppProvider>
+        // preview-end
+    );
+}

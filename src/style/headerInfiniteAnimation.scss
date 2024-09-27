@@ -1,11 +1,11 @@
-@import "./params.less";
+@import "params.scss";
 
 .header_infinite_animation {
   overflow: hidden;
   h2,
   h3 {
     display: inline-block;
-    font-family: @font-family-lato;
+    font-family: $font-family-lato;
     font-style: normal;
     text-transform: uppercase;
     font-size: 24px;
@@ -15,13 +15,13 @@
     padding: 0.25rem 0.35rem;
     margin: 0 0.5rem 2.8rem;
     animation: text-animation 7s infinite;
-    background: @color-primary;
+    background: $color-primary;
     color: white;
   }
 }
 
 body.dark {
   h3 {
-    background: @color-primary-dark-mode;
+    background: $color-primary-dark-mode;
   }
 }
