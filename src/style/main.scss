@@ -39,7 +39,6 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  margin-left: 50px;
 
   section {
     margin: $spacing-lg 0 0;
@@ -47,6 +46,15 @@ body {
 
 }
 
+
+.app {
+  display: flex;
+  .content {
+    width: 100%;
+    background: red;
+    @include base-width;
+  }
+}
 
 
 
@@ -72,38 +80,3 @@ body {
 }
 
 
-/* 404.css */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
-}
-
-.error-code {
-  font-size: 120px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.asterisk {
-  font-size: 40px;
-  color: #ccc;
-}
-
-.btn {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #3e8e41;
-}

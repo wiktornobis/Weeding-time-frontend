@@ -3,8 +3,8 @@ import "@/style/main.scss";
 
 import { useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Topbar from "@/ts/scenes/global/Topbar";
-import SidebarMenu from "@/ts/scenes/global/SidebarMenu";
+import Topbar from "@/ts/scenes/Menu/Topbar";
+import SidebarMenu from "@/ts/scenes/Menu/SidebarMenu";
 import Home from "@/ts/Home/Home";
 import Dashboard from "@/ts/Dashboard/Dashboard";
 

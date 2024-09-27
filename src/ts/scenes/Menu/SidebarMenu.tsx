@@ -1,23 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import {
-    Drawer,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    IconButton,
-    Box,
-    Typography,
-    Collapse
-} from "@mui/material";
+import {useState} from "react";
+import {Link} from "react-router-dom";
+import {Box, Collapse, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import menuItems from "@/ts/scenes/Menu/MenuItems.tsx";
 
 const SidebarMenu: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
@@ -27,21 +15,6 @@ const SidebarMenu: React.FC = () => {
     const handleDashboardClick = () => {
         setOpenDashboardSubmenu(!openDashboardSubmenu);
     };
-
-    const menuItems = [
-        {
-            title: "Dashboard",
-            to: "/",
-            icon: <HomeOutlinedIcon />,
-            submenu: [
-                { title: "Dashboard 1", to: "/dashboard1" },
-                { title: "Dashboard 2", to: "/dashboard2" }
-            ]
-        },
-        { title: "Manage Team", to: "/team", icon: <PeopleOutlinedIcon /> },
-        { title: "Contacts Information", to: "/contacts", icon: <ContactsOutlinedIcon /> },
-        { title: "Invoices Balances", to: "/invoices", icon: <ReceiptOutlinedIcon /> }
-    ];
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -108,7 +81,6 @@ const SidebarMenu: React.FC = () => {
                         <List component="div" disablePadding>
                             {menuItems[0].submenu?.map((subItem) => (
                                 <ListItem
-                                    button
                                     key={subItem.title}
                                     component={Link}
                                     to={subItem.to}
@@ -125,7 +97,6 @@ const SidebarMenu: React.FC = () => {
                     {/* Other Menu Items */}
                     {menuItems.slice(1).map((item) => (
                         <ListItem
-                            button
                             key={item.title}
                             component={Link}
                             to={item.to}
