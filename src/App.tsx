@@ -1,12 +1,11 @@
-
 import "@/style/main.scss";
 
-import { useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Topbar from "@/ts/scenes/Menu/Topbar";
-import SidebarMenu from "@/ts/scenes/Menu/SidebarMenu";
-import Home from "@/ts/Home/Home";
-import Dashboard from "@/ts/Dashboard/Dashboard";
+import {useState} from "react";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Topbar from "@/ts/components/Menu/Topbar";
+import SidebarMenu from "@/ts/components/Menu/SidebarMenu";
+import Home from "@/ts/views/Home/Home";
+import Dashboard from "@/ts/views/Dashboard/Dashboard";
 
 const App = () => {
     const [isSidebar, setIsSidebar] = useState(true);
