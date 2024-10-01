@@ -1,15 +1,22 @@
 @import "mixins";
 
 // Zmienne
-//$color-white: #ffffff;
-//$color-primary: #00529a;
-//$color-green-light: #006e8c;
-//$color-column: #e8e8e8;
-//$color-text: #4c4c4c;
-//$color-text-dark: #2a2a2a;
-//$color-list: #6c6c6c;
+$color-white: #ffffff;
+$color-primary: #00529a;
+$color-green-light: #006e8c;
+$color-column: #e8e8e8;
+$color-text: #4c4c4c;
+$color-text-dark: #2a2a2a;
+$color-list: #6c6c6c;
 
 $size-base-font: 16px;
+$font-size-xs: 10px;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+
+
 
 $mobile: 767px;
 $tablet: 989px;

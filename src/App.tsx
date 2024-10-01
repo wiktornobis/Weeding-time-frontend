@@ -1,6 +1,5 @@
 import "@/style/main.scss";
-import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Topbar from "@/ts/components/Menu/Topbar";
 import SidebarMenu from "@/ts/components/Menu/SidebarMenu";
 import Home from "@/ts/views/Home/Home";
@@ -13,7 +12,7 @@ import Guests from "@/ts/views/Guests/Guests";
 import TablePlanner from "@/ts/views/TablePlanner/TablePlanner";
 
 const App = () => {
-    const [isSidebar, setIsSidebar] = useState(true);
+    // const [isSidebar, setIsSidebar] = useState(true);
 
     return (
         <BrowserRouter>
@@ -24,9 +23,9 @@ const App = () => {
                 <Route element={<ProtectedRoute />}>
                     <Route path="*" element={
                         <div className="app">
-                            <SidebarMenu isSidebar={isSidebar} />
+                            <SidebarMenu />
                             <main className="content">
-                                <Topbar setIsSidebar={setIsSidebar} />
+                                <Topbar />
                                 {/* Zagnieżdżone trasy chronione */}
                                 <Routes>
                                     <Route index element={<Home />} />

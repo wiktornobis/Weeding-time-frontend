@@ -1,11 +1,7 @@
 import Head from "@/ts/helpers/Head.tsx";
 import '@/style/home.scss';
 
-import HeroLogo from "@/ts/components/HeroLogo.tsx";
-
 const Home = () => {
-
-
     return (
         <>
             <Head
@@ -15,7 +11,6 @@ const Home = () => {
                 robots="index, follow"
             />
 
-            <HeroLogo />
             <section className="general-container">
             </section>
         </>

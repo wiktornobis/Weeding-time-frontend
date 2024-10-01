@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import {useState} from "react";
+import {Link} from "react-router-dom";
+import {Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText} from "@mui/material";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import menuItems from "@/ts/components/Menu/MenuItems.tsx";
+import User from "@/ts/components/Menu/User.tsx";
 
 const SidebarMenu: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
@@ -28,21 +29,7 @@ const SidebarMenu: React.FC = () => {
                         <MenuOutlinedIcon />
                     </IconButton>
                     {!isCollapsed && (
-                        <Box display="flex" flexDirection="column" alignItems="center" mt={2}>
-                            <img
-                                alt="profile-user"
-                                width="100px"
-                                height="100px"
-                                src={`../../assets/user.png`}
-                                style={{ borderRadius: "50%" }}
-                            />
-                            <Typography variant="h6" mt={1}>
-                                Ed Roh
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                                VP Fancy Admin
-                            </Typography>
-                        </Box>
+                        <User />
                     )}
                 </Box>
 
@@ -50,7 +37,7 @@ const SidebarMenu: React.FC = () => {
                     {menuItems.map((item) => (
                         <ListItem
                             key={item.title}
-                            component={Link}
+                            component={Link as any}
                             to={item.to}
                             selected={selected === item.title}
                             onClick={() => setSelected(item.title)}
@@ -68,8 +55,6 @@ const SidebarMenu: React.FC = () => {
                     ))}
                 </List>
             </Drawer>
-
-            {/* Main Content */}
         </Box>
     );
 };
