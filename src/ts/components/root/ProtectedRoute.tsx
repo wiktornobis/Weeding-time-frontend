@@ -1,21 +1,15 @@
-import { ReactNode } from "react";
-import { useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
-import { RootState } from '@/redux/store';
+// import {useSelector} from "react-redux";
+import {Navigate, Outlet} from "react-router-dom";
+// import {RootState} from '@/redux/store';
 
-interface ProtectedRouteProps {
-    children: ReactNode;
-}
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-    const user = useSelector((state: RootState) => state.user);
-    let location = useLocation();
+const ProtectedRoute = () => {
+    // const user = useSelector((state: RootState) => state.user);
+    // let userAuth = user.isAuthenticated;
+    let userAuth = true;
 
-    if (!user.isAuthenticated) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
-    }
+    return userAuth ? <Outlet /> : <Navigate to="/login" />
 
-    return <>{children}</>;
 };
 
 export default ProtectedRoute;

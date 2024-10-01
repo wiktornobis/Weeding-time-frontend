@@ -34,20 +34,20 @@ const ToggleColorMode: React.FC<ToggleColorModeProps> = ({ children }) => {
                 palette: {
                     mode,
                     primary: {
-                        main: mode === 'light' ? "#f9e6db" : "#cfcac6",
-                        contrastText: mode === 'light' ? "#3c3631" : "#2e2b27",
+                        main: mode === 'light' ? "#ffefd5" : "#b58b6b", // pastelowy beż, elegancki
+                        contrastText: mode === 'light' ? "#5a3e36" : "#fff5e6", // czekoladowy brąz lub jasny kremowy
                     },
                     secondary: {
-                        main: mode === 'light' ? "#3c3631" : "#7A4A99",
-                        contrastText: mode === 'light' ? "#ffffff" : "#e8e8e8",
+                        main: mode === 'light' ? "#f4c2c2" : "#8b5e83", // pastelowy róż lub elegancki fiolet
+                        contrastText: mode === 'light' ? "#ffffff" : "#f1e7dd", // biały kontrastujący z fioletem
                     },
                     background: {
-                        default: mode === 'light' ? '#ffffff' : '#2e2b27',
-                        paper: mode === 'light' ? '#f9e6db' : '#3c3631',
+                        default: mode === 'light' ? '#ffffff' : '#4b3832', // biały lub elegancki ciemny brąz
+                        paper: mode === 'light' ? '#ffe4e1' : '#2e2b27', // różowy do delikatnych akcentów lub ciemny do formalnych
                     },
                     text: {
-                        primary: mode === 'light' ? '#3c3631' : '#cfcac6',
-                        secondary: mode === 'light' ? '#6247AA' : '#9e91a0',
+                        primary: mode === 'light' ? '#fff' : '#ffefd5', // ciemny brąz lub pastelowy beż
+                        secondary: mode === 'light' ? '#b76e79' : '#d4af37', // ciemniejszy róż lub złoty akcent
                     },
                 }
             }),

@@ -1,20 +1,12 @@
-import {useState} from "react";
-import {Link} from "react-router-dom";
-import {Box, Collapse, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import menuItems from "@/ts/components/Menu/MenuItems.tsx";
 
 const SidebarMenu: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-    const [selected, setSelected] = useState<string>("Dashboard");
-    const [openDashboardSubmenu, setOpenDashboardSubmenu] = useState<boolean>(false);
-
-    const handleDashboardClick = () => {
-        setOpenDashboardSubmenu(!openDashboardSubmenu);
-    };
+    const [selected, setSelected] = useState<string>("Home");
 
     return (
         <Box sx={{ display: "flex" }}>
@@ -55,47 +47,7 @@ const SidebarMenu: React.FC = () => {
                 </Box>
 
                 <List>
-                    {/* Dashboard with Submenu */}
-                    <ListItem
-                        button
-                        onClick={handleDashboardClick}
-                        sx={{
-                            padding: isCollapsed ? "8px" : "16px",
-                            justifyContent: isCollapsed ? "center" : "flex-start",
-                            transition: "all 0.3s",
-                        }}
-                    >
-                        <ListItemIcon sx={{ justifyContent: "center" }}>
-                            <HomeOutlinedIcon />
-                        </ListItemIcon>
-                        {!isCollapsed && (
-                            <>
-                                <ListItemText primary="Dashboard" />
-                                {openDashboardSubmenu ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                            </>
-                        )}
-                    </ListItem>
-
-                    {/* Dashboard Submenu */}
-                    <Collapse in={openDashboardSubmenu} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            {menuItems[0].submenu?.map((subItem) => (
-                                <ListItem
-                                    key={subItem.title}
-                                    component={Link}
-                                    to={subItem.to}
-                                    selected={selected === subItem.title}
-                                    onClick={() => setSelected(subItem.title)}
-                                    sx={{ pl: isCollapsed ? "16px" : "32px" }}  // Padding to the left for nested items
-                                >
-                                    <ListItemText primary={subItem.title} />
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Collapse>
-
-                    {/* Other Menu Items */}
-                    {menuItems.slice(1).map((item) => (
+                    {menuItems.map((item) => (
                         <ListItem
                             key={item.title}
                             component={Link}
@@ -118,7 +70,6 @@ const SidebarMenu: React.FC = () => {
             </Drawer>
 
             {/* Main Content */}
-
         </Box>
     );
 };
