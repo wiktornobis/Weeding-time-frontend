@@ -1,8 +1,8 @@
-import React, { createContext, ReactNode, useMemo, useEffect } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '@/redux/store';
-import { toggleColorMode } from '@/redux/reducers/colorMode/colorModeSlice';
+import React, {createContext, ReactNode, useEffect, useMemo} from 'react';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '@/redux/store';
+import {toggleColorMode} from '@/redux/reducers/colorMode/colorModeSlice';
 import '@/style/params.scss';
 
 type ColorMode = 'light' | 'dark';
@@ -34,20 +34,18 @@ const ToggleColorMode: React.FC<ToggleColorModeProps> = ({ children }) => {
                 palette: {
                     mode,
                     primary: {
-                        main: mode === 'light' ? "#ffefd5" : "#b58b6b", // pastelowy beż, elegancki
-                        contrastText: mode === 'light' ? "#5a3e36" : "#fff5e6", // czekoladowy brąz lub jasny kremowy
+                        main: mode === 'light' ? "#ca27e3" : "#9c1b8d",
                     },
                     secondary: {
-                        main: mode === 'light' ? "#f4c2c2" : "#8b5e83", // pastelowy róż lub elegancki fiolet
-                        contrastText: mode === 'light' ? "#ffffff" : "#f1e7dd", // biały kontrastujący z fioletem
+                        main: mode === 'light' ? "#ffffff" : "#f0f0f0",
                     },
                     background: {
-                        default: mode === 'light' ? '#ffffff' : '#4b3832', // biały lub elegancki ciemny brąz
-                        paper: mode === 'light' ? '#ffe4e1' : '#2e2b27', // różowy do delikatnych akcentów lub ciemny do formalnych
+                        default: mode === 'light' ? '#ffffff' : '#1d1917',
+                        paper: mode === 'light' ? '#e0b0d6' : '#d07dbc',
                     },
                     text: {
-                        primary: mode === 'light' ? '#fff' : '#ffefd5', // ciemny brąz lub pastelowy beż
-                        secondary: mode === 'light' ? '#b76e79' : '#d4af37', // ciemniejszy róż lub złoty akcent
+                        primary: mode === 'light' ? '#1d1917' : '#f5f5f5',
+                        secondary: mode === 'light' ? '#1d1917' : '#f5f5f5',
                     },
                 }
             }),

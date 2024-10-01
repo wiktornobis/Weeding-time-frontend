@@ -1,13 +1,16 @@
 @import "mixins";
 
 // Zmienne
-$color-white: #ffffff;
-$color-primary: #00529a;
-$color-green-light: #006e8c;
-$color-column: #e8e8e8;
-$color-text: #4c4c4c;
-$color-text-dark: #2a2a2a;
-$color-list: #6c6c6c;
+$color-primary: #e0b0d6;
+$color-secondary: #ffffff;
+$color-tertiary: #e5eaee;
+$color-quaternary: #1d1917;
+
+$color-primary-dark: #bb419d;
+$color-secondary-dark: #f0f0f0;
+$color-tertiary-dark: #3a3d40;
+$color-quaternary-dark: #d8cfc4;
+
 
 $size-base-font: 16px;
 $font-size-xs: 10px;
@@ -33,22 +36,6 @@ $spacing-md: 46px;
 $spacing-lg: 69px;
 $spacing-xl: 92px;
 $spacing-xxl: 150px;
-
-
-$color-primary: #f9e6db;
-$color-secondary: #3c3631;
-$color-tertiary: #ec4c23;
-$color-orange: #f99115;
-$color-primary-blue: #102B3F;
-$color-dark-green: #062726;
-
-$color-primary-dark-mode: #cfcac6;
-$color-secondary-dark-mode: #2e2b27;
-$color-tertiary-dark-mode: #ff7043;
-$color-orange-dark-mode: #ffaf49;
-$color-tertiary-dark-mode: #413A58;
-$color-primary-blue-dark-mode: #0A1A24;
-$color-dark-green-dark-mode: #031313;
 
 @mixin mobile {
   @media (max-width: $mobile) {

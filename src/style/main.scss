@@ -53,6 +53,10 @@ body {
     width: 100%;
     @include base-width;
   }
+
+  .MuiSvgIcon-root {
+    fill: $color-quaternary;
+  }
 }
 
 
