@@ -4,7 +4,6 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import {Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText} from "@mui/material";
 import menuItems from "@/ts/components/Menu/MenuItems.tsx";
 import User from "@/ts/components/Menu/User.tsx";
-import Hamburger from "@/ts/components/Hamburger/Hamburger.tsx";
 
 const SidebarMenu: React.FC = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(true);

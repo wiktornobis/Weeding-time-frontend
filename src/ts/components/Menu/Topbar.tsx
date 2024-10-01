@@ -1,33 +1,34 @@
 import {Box, IconButton} from "@mui/material";
-// import { ColorModeContext, tokens } from "../../theme";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import {DarkModeOutlined, LightModeOutlined} from "@mui/icons-material";
+import {useAppDispatch, useAppSelector} from '@/redux/hooks.ts';
+import {toggleColorMode} from "@/redux/reducers/colorMode/colorModeSlice.ts";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import {Link} from "react-router-dom";
 
 const Topbar = () => {
-    // const theme = useTheme();
-    // const colors = tokens(theme.palette.mode);
-    // const colorMode = useContext(ColorModeContext);
+    const colorMode = useAppSelector(state => state.colorMode.mode);
+    const dispatch = useAppDispatch();
 
     return (
-        <Box display="flex" justifyContent="flex-end" p={2}>
-            {/* ICONS */}
-            <Box display="flex">
-                {/*<IconButton onClick={colorMode.toggleColorMode}>*/}
-                {/*    {theme.palette.mode === "dark" ? (*/}
-                {/*        <DarkModeOutlinedIcon />*/}
-                {/*    ) : (*/}
-                {/*        <LightModeOutlinedIcon />*/}
-                {/*    )}*/}
-                {/*</IconButton>*/}
-
-                <IconButton>
-                    <SettingsOutlinedIcon />
-                </IconButton>
-                <IconButton>
-                    <PersonOutlinedIcon />
-                </IconButton>
+        <div className="topbar">
+            <Box display="flex" justifyContent="flex-end" p={2}>
+                {/* ICONS */}
+                <Box display="flex">
+                    <IconButton onClick={() => dispatch(toggleColorMode())}>
+                        {colorMode === "dark" ? (
+                            <DarkModeOutlined />
+                        ) : (
+                            <LightModeOutlined />
+                        )}
+                    </IconButton>
+                    <Link to="/moje-konto">
+                        <IconButton>
+                            <PersonOutlinedIcon />
+                        </IconButton>
+                    </Link>
+                </Box>
             </Box>
-        </Box>
+        </div>
     );
 };
 

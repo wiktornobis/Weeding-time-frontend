@@ -34,6 +34,7 @@ const App = () => {
                                     <Route path="kalendarz" element={<Calendar />} />
                                     <Route path="planer-stolow" element={<TablePlanner />} />
                                     <Route path="pliki-do-pobrania" element={<DownloadFiles />} />
+                                    <Route path="moje-konto" element={<DownloadFiles />} />
                                 </Routes>
                             </main>
                         </div>

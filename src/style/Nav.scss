@@ -1,5 +1,10 @@
 @import "params";
 
+.topbar {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: $spacing-sm;
+}
 
 ul.sidebar_menu {
   a {
@@ -18,7 +23,6 @@ ul.sidebar_menu {
     }
   }
 }
-
 
 .user_menu {
   h6 {
