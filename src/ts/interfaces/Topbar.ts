@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface TopbarProps {
-    setIsCollapsed: (value: boolean) => void;
+    setIsCollapsed: Dispatch<SetStateAction<boolean>>;
 }
