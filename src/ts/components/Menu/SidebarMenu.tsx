@@ -1,24 +1,29 @@
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import {Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText} from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+
+import { SidebarMenuProps } from "@/ts/interfaces/SidebarMenu.ts"
+import { ConditionalRender, isMobile } from "@/ts/helpers/Functions.ts";
 import menuItems from "@/ts/components/Menu/MenuItems.tsx";
 import User from "@/ts/components/Menu/User.tsx";
 
-const SidebarMenu: React.FC = () => {
-    const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+const SidebarMenu: React.FC<SidebarMenuProps> = ({ isCollapsed, setIsCollapsed }) => {
     const [selected, setSelected] = useState<string>("Home");
+    const mobile = isMobile();
 
     return (
         <Box sx={{ display: "flex" }}>
             <Drawer
-                variant="permanent"
+                variant={mobile ? "temporary" : "permanent"}
                 open={!isCollapsed}
+                onClose={() => setIsCollapsed(true)} // Na mobile zamyka menu po kliknięciu poza nim
                 sx={{
                     width: isCollapsed ? 60 : 240,
                     flexShrink: 0,
                     "& .MuiDrawer-paper": {
-                        width: isCollapsed ? 60 : { xs: '90%', sm: 240 },
+                        width: isCollapsed ? 60 : { xs: '100%', sm: 240 },
                         boxSizing: "border-box",
                         transition: "width 0.3s",
                     },
@@ -26,11 +31,14 @@ const SidebarMenu: React.FC = () => {
             >
                 <Box display="flex" flexDirection="column" alignItems="center" p={2}>
                     <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                        <MenuOutlinedIcon />
+                        <ConditionalRender condition={isCollapsed} fallback={<CloseIcon />}>
+                            <MenuOutlinedIcon />
+                        </ConditionalRender>
                     </IconButton>
-                    {!isCollapsed && (
+
+                    <ConditionalRender condition={!isCollapsed && !mobile}>
                         <User />
-                    )}
+                    </ConditionalRender>
                 </Box>
 
                 <List className="sidebar_menu">
@@ -43,7 +51,8 @@ const SidebarMenu: React.FC = () => {
                             className={selected === item.title ? "active" : ""}
                             onClick={() => {
                                 setSelected(item.title);
-                                console.log(`${item.title} selected`);
+                                if (mobile) setIsCollapsed(true); // Zamyka menu na mobile po kliknięciu
+
                             }}
                             sx={{
                                 padding: isCollapsed ? "8px" : "16px",

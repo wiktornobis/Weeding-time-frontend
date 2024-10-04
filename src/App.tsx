@@ -1,5 +1,8 @@
-import "@/style/main.scss";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { useState } from "react";
+
+import "@/style/main.scss";
+
 import Topbar from "@/ts/components/Menu/Topbar";
 import SidebarMenu from "@/ts/components/Menu/SidebarMenu";
 import Home from "@/ts/views/Home/Home";
@@ -11,8 +14,9 @@ import DownloadFiles from "@/ts/views/DownloadFiles/DownloadFiles";
 import Guests from "@/ts/views/Guests/Guests";
 import TablePlanner from "@/ts/views/TablePlanner/TablePlanner";
 
+
 const App = () => {
-    // const [isSidebar, setIsSidebar] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 
     return (
         <BrowserRouter>
@@ -23,9 +27,9 @@ const App = () => {
                 <Route element={<ProtectedRoute />}>
                     <Route path="*" element={
                         <div className="app">
-                            <SidebarMenu />
+                            <SidebarMenu isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
                             <main className="content">
-                                <Topbar />
+                                <Topbar setIsCollapsed={setIsCollapsed} />
                                 {/* Zagnieżdżone trasy chronione */}
                                 <Routes>
                                     <Route index element={<Home />} />

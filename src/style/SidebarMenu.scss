@@ -13,12 +13,6 @@
       }
     }
 
-    &.expanded {
-      .MuiDrawer-paper {
-        width: 240px;
-      }
-    }
-
     .MuiDrawer-paper {
       box-sizing: border-box;
       transition: width 0.3s;

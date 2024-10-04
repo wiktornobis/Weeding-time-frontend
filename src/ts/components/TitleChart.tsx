@@ -1,6 +1,6 @@
-import {TitleChartProps} from "@/ts/types/TitleChart.ts";
+import { TitleChartProps } from "@/ts/interfaces/TitleChart.ts";
 
-const TitleChart = ({ title }: TitleChartProps) => {
+const TitleChart = ({title}: TitleChartProps) => {
     return (
         <div className="title_chart">
             <h2>{title}</h2>

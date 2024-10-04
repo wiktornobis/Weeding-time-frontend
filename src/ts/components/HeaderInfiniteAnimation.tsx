@@ -1,4 +1,4 @@
-import {HeaderInfiniteAnimationProps} from "@/ts/types/HeaderInfiniteAnimationProps.ts";
+import {HeaderInfiniteAnimationProps} from "@/ts/interfaces/HeaderInfiniteAnimationProps.ts";
 
 const HeaderInfiniteAnimation = ({ textFirst, textSecond }: HeaderInfiniteAnimationProps) => {
     return (
