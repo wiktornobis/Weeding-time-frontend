@@ -1,4 +1,4 @@
 export interface HeaderInfiniteAnimationProps {
-    textFirst: string;
-    textSecond: string;
+    textFirst?: string;
+    textSecond?: string;
 }

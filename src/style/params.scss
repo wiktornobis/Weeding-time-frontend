@@ -30,6 +30,7 @@ $font-family-playfair: "Playfair Display", Helvetica Neue, Arial, sans-serif;
 $font-family-lato: "Lato", Helvetica Neue, Arial, sans-serif;
 $font-family: $font-family-lato, sans-serif, Arial;
 
+$spacing-xxs: 12px;
 $spacing-xs: 23px;
 $spacing-sm: 34px;
 $spacing-md: 46px;
@@ -86,9 +87,7 @@ $spacing-xxl: 150px;
   }
 
   @include mobile {
-    margin-left: $spacing-xs;
-    margin-right: $spacing-xs;
-    margin-bottom: $spacing-md;
+    margin: $spacing-xxs $spacing-xs;
   }
 }
 

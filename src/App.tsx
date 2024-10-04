@@ -13,6 +13,7 @@ import Calendar from "@/ts/views/Calendar/Calendar";
 import DownloadFiles from "@/ts/views/DownloadFiles/DownloadFiles";
 import Guests from "@/ts/views/Guests/Guests";
 import TablePlanner from "@/ts/views/TablePlanner/TablePlanner";
+import Account from "@/ts/views/Account/Account.tsx";
 
 
 const App = () => {
@@ -38,7 +39,7 @@ const App = () => {
                                     <Route path="kalendarz" element={<Calendar />} />
                                     <Route path="planer-stolow" element={<TablePlanner />} />
                                     <Route path="pliki-do-pobrania" element={<DownloadFiles />} />
-                                    <Route path="moje-konto" element={<DownloadFiles />} />
+                                    <Route path="moje-konto" element={<Account />} />
                                 </Routes>
                             </main>
                         </div>

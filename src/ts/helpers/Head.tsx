@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-type Props = {
+interface Props {
     title: string,
     description: string,
     keywords: string,
@@ -15,9 +15,7 @@ const Head = ({title, description, keywords, robots, canonicalLink}: Props) => {
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
             <meta name="robots" content={robots} />
-            {canonicalLink && (
-                <link rel="canonical" href={canonicalLink} />
-            )}
+            {canonicalLink && <link rel="canonical" href={canonicalLink} />}
         </Helmet>
     );
 };

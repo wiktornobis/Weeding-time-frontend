@@ -1,6 +1,9 @@
-import {HeaderInfiniteAnimationProps} from "@/ts/interfaces/HeaderInfiniteAnimationProps.ts";
+import "@/style/headerInfiniteAnimation.scss";
 
-const HeaderInfiniteAnimation = ({ textFirst, textSecond }: HeaderInfiniteAnimationProps) => {
+import { HeaderInfiniteAnimationProps } from "@/ts/interfaces/HeaderInfiniteAnimationProps.ts";
+
+
+const HeaderInfiniteAnimation = ({textFirst, textSecond}: HeaderInfiniteAnimationProps) => {
     return (
         <div className="header_infinite_animation">
             <h2>{textFirst}</h2>

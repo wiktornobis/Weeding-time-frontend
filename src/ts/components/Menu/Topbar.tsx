@@ -15,7 +15,7 @@ const Topbar: React.FC<TopbarProps> = ({ setIsCollapsed }) => {
 
     return (
         <div className="topbar">
-            <Box display="flex" justifyContent="space-between" p={2}>
+            <Box display="flex" justifyContent="space-between" p={1}>
                 {mobile && (
                     <IconButton onClick={() => setIsCollapsed(prev => !prev)}>
                         <MenuOutlined />
