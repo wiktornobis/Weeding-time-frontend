@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 import "@/style/main.scss";
@@ -14,32 +14,41 @@ import DownloadFiles from "@/ts/views/DownloadFiles/DownloadFiles";
 import Guests from "@/ts/views/Guests/Guests";
 import TablePlanner from "@/ts/views/TablePlanner/TablePlanner";
 import Account from "@/ts/views/Account/Account.tsx";
-
+import { RoleAccount } from "@/api/Account/types.ts"; // Zaimportuj enum ról
 
 const App = () => {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+    let userRole = RoleAccount.Admin;
 
     return (
         <BrowserRouter>
             <Routes>
+                {/* Trasa dostępna dla niezalogowanych (np. login) */}
                 <Route path="/login" element={<Login />} />
 
-                {/* Poniżej protected root */}
+                {/* Trasa tylko dla Admina */}
+                <Route element={<ProtectedRoute allowedRoles={[RoleAccount.Admin]} />}>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                </Route>
+
+                {/* Trasa dostępna tylko dla Gości */}
+                <Route element={<ProtectedRoute allowedRoles={[RoleAccount.Guest]} />}>
+                    <Route path="/moje-konto" element={<Account />} />
+                </Route>
+
+                {/* Trasa dostępna dla zalogowanych użytkowników */}
                 <Route element={<ProtectedRoute />}>
                     <Route path="*" element={
                         <div className="app">
-                            <SidebarMenu isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+                            <SidebarMenu isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} userRole={userRole} />
                             <main className="content">
                                 <Topbar setIsCollapsed={setIsCollapsed} />
-                                {/* Zagnieżdżone trasy chronione */}
                                 <Routes>
                                     <Route index element={<Home />} />
-                                    <Route path="dashboard" element={<Dashboard />} />
                                     <Route path="goscie" element={<Guests />} />
                                     <Route path="kalendarz" element={<Calendar />} />
                                     <Route path="planer-stolow" element={<TablePlanner />} />
                                     <Route path="pliki-do-pobrania" element={<DownloadFiles />} />
-                                    <Route path="moje-konto" element={<Account />} />
                                 </Routes>
                             </main>
                         </div>

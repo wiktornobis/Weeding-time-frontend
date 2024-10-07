@@ -1,8 +1,10 @@
 export enum RoleAccount {
+    Admin = "Admin",
     Groom = "Pan młody",
     Bride = "Panna młoda",
     Witness = "Świadek",
-    Other = "Inna"
+    Guest = "Gość",
+    Other = "Inna",
 }
 
 export type Account = {
