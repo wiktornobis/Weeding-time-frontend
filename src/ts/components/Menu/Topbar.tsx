@@ -6,7 +6,7 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 import { TopbarProps } from "@/ts/interfaces/Topbar.ts";
 import { useAppDispatch, useAppSelector } from '@/redux/hooks.ts';
-import { isMobile } from "@/ts/helpers/Functions.ts";
+import { isMobile } from "@/ts/helpers/Functions.tsx";
 
 const Topbar: React.FC<TopbarProps> = ({ setIsCollapsed }) => {
     const colorMode = useAppSelector(state => state.colorMode.mode);

@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
 import { SidebarMenuProps } from "@/ts/interfaces/SidebarMenu.ts";
-import { ConditionalRender, isMobile } from "@/ts/helpers/Functions.ts";
+import { ConditionalRender, isMobile } from "@/ts/helpers/Functions.tsx";
 import menuItems from "@/ts/components/Menu/MenuItems.tsx";
 import User from "@/ts/components/Menu/User.tsx";
 
