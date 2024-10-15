@@ -1,9 +1,10 @@
+import LoginForm from "@/ts/components/Form/LoginForm/LoginForm.tsx";
 
 const Login = () => {
     return (
-        <div>
-            Logowanie
-        </div>
+        <>
+            <LoginForm />
+        </>
     );
 };
 

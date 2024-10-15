@@ -1,0 +1,10 @@
+@import "@/style/params.scss";
+
+.login_form {
+  max-width: 450px;
+  margin: $spacing-lg auto;
+  padding: $spacing-md;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
