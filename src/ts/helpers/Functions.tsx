@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 interface ConditionalRenderProps {
     condition: boolean;
     children: ReactNode; // Elementy do wyrenderowania, gdy warunek jest prawdziwy
-    fallback?: ReactNode; // Elementy do wyrenderowania, gdy warunek jest fałszywy (opcjonalne)
+    falseCondition?: ReactNode; // Elementy do wyrenderowania, gdy warunek jest fałszywy (opcjonalne)
 }
 export const Cookies = {
     createCookie: (name: string, value: string, days?: number, unescapeValue?: boolean): void => {
@@ -42,6 +42,6 @@ export const isMobile = (): boolean => {
     return useMediaQuery('(max-width:767px)');
 };
 
-export const ConditionalRender: React.FC<ConditionalRenderProps> = ({ condition, children, fallback = null }) => {
-    return condition ? children : fallback;
+export const ConditionalRender: React.FC<ConditionalRenderProps> = ({ condition, children, falseCondition = null }) => {
+    return condition ? children : falseCondition;
 };

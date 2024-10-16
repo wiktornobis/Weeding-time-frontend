@@ -33,7 +33,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ isCollapsed, setIsCollapsed, 
             >
                 <Box display="flex" flexDirection="column" alignItems="center" p={2}>
                     <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                        <ConditionalRender condition={isCollapsed} fallback={<CloseIcon />}>
+                        <ConditionalRender condition={isCollapsed} falseCondition={<CloseIcon />}>
                             <MenuOutlinedIcon />
                         </ConditionalRender>
                     </IconButton>

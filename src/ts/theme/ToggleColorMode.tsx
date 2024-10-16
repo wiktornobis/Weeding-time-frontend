@@ -34,18 +34,18 @@ const ToggleColorMode: React.FC<ToggleColorModeProps> = ({ children }) => {
                 palette: {
                     mode,
                     primary: {
-                        main: mode === 'light' ? "#ca27e3" : "#9c1b8d",
+                        main: mode === 'light' ? "#8739F9" : "#BB86FC",
                     },
                     secondary: {
-                        main: mode === 'light' ? "#ffffff" : "#f0f0f0",
+                        main: mode === 'light' ? "#ffffff" : "#F2F5F5",
                     },
                     background: {
-                        default: mode === 'light' ? '#ffffff' : '#1d1917',
-                        paper: mode === 'light' ? '#e0b0d6' : '#d07dbc',
+                        default: mode === 'light' ? '#ffffff' : '#B0BEC5',
+                        paper: mode === 'light' ? '#8739F9' : '#BB86FC',
                     },
                     text: {
-                        primary: mode === 'light' ? '#1d1917' : '#f5f5f5',
-                        secondary: mode === 'light' ? '#1d1917' : '#f5f5f5',
+                        primary: mode === 'light' ? '#565360' : '#F2F5F5',
+                        secondary: mode === 'light' ? '#565360' : '#F2F5F5',
                     },
                 }
             }),

@@ -1,23 +1,28 @@
 @import "mixins";
 
 // Zmienne
-$color-primary: #e0b0d6;
-$color-secondary: #ffffff;
-$color-tertiary: #e5eaee;
+$color-primary: #8739F9;
+$color-secondary: #37B9F1;
+$color-tertiary: #F2F5F5;
 $color-quaternary: #1d1917;
 
-$color-primary-dark: #bb419d;
-$color-secondary-dark: #f0f0f0;
-$color-tertiary-dark: #3a3d40;
-$color-quaternary-dark: #d8cfc4;
+$color-primary-dark: #BB86FC;
+$color-secondary-dark: #4FC3F7;
+$color-tertiary-dark: #B0BEC5;
+$color-quaternary-dark: #121212;
+
+$color-text: #565360;
+$color-text-label: #908E9B;
+$color-text-disabled: #E1DFE9;
+
 
 
 $size-base-font: 16px;
-$font-size-xs: 10px;
-$font-size-sm: 12px;
-$font-size-md: 14px;
-$font-size-lg: 20px;
-$font-size-xl: 24px;
+$font-size-xs: 0.5rem;
+$font-size-sm: 0.75rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
 
 
 
