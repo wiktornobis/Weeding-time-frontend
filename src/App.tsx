@@ -9,7 +9,7 @@ import Calendar from "@/ts/views/Calendar/Calendar";
 import DownloadFiles from "@/ts/views/DownloadFiles/DownloadFiles";
 import Guests from "@/ts/views/Guests/Guests";
 import TablePlanner from "@/ts/views/TablePlanner/TablePlanner";
-// import Account from "@/ts/views/Account/Account.tsx";
+import Account from "@/ts/views/Account/Account.tsx";
 import { RoleAccount } from "@/api/Account/types.ts";
 import AdminLayout from "@/ts/components/root/AdminLayout.tsx";
 
@@ -31,7 +31,7 @@ const App = () => {
                 </Route>
                 {/* Trasa dostępna tylko dla Gości */}
                 <Route element={<ProtectedRoute allowedRoles={[RoleAccount.Guest]} />}>
-                    {/*<Route path="/moje-konto" element={<Account />} />*/}
+                    <Route path="/moje-konto" element={<Account />} />
                 </Route>
 
                 {/* Trasa dostępna dla zalogowanych użytkowników */}
