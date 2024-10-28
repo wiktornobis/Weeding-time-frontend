@@ -1,7 +1,10 @@
 import Head from "@/ts/helpers/Head.tsx";
 import Spinner from "@/ts/components/Spinner.tsx";
+import { RootState } from "@/redux/store.ts";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+    const { userRole } = useSelector((state: RootState) => state.auth);
     return (
         <>
             <Head
@@ -12,8 +15,9 @@ const Home = () => {
             />
             <div className="general-container">
                 <Spinner />
-                <h1>Hello World</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consectetur ipsum minus odio officia. Eaque facere nam quibusdam rem soluta?</p>
+
+            <h1>Witaj, {userRole}!</h1>
+
             </div>
         </>
     );

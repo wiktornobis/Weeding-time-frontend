@@ -6,9 +6,6 @@ export const formLoginSchema = z.object({
     }),
 
     password: z.string()
-        .min(8, "Hasło musi zawierać conajmniej 8 znaków")
-        .regex(/[A-Z]/, "Hasło musi zawierać conajmniej 1 dużą literę")
-        .regex(/[a-z]/, "Hasło musi zawierać conajmniej 1 mała literę")
-        .regex(/[0-9]/, "Hasło musi zawierać conajmniej 1 cyfrę")
-        .regex(/[@$!%*?&#]/, "Hasło musi zawierać conajmniej 1 specjalny znak")
+        .min(2, "Hasło musi zawierać conajmniej 2 znaków")
+
 })

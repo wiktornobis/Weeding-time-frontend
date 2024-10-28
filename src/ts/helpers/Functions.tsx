@@ -45,3 +45,5 @@ export const isMobile = (): boolean => {
 export const ConditionalRender: React.FC<ConditionalRenderProps> = ({ condition, children, falseCondition = null }) => {
     return condition ? children : falseCondition;
 };
+
+

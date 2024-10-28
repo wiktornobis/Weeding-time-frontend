@@ -1,10 +1,10 @@
 export enum RoleAccount {
-    Admin = "Admin",
-    Groom = "Pan młody",
-    Bride = "Panna młoda",
-    Witness = "Świadek",
-    Guest = "Gość",
-    Other = "Inna",
+    ADMIN = "ADMIN",
+    GROOM = "GROOM",
+    BRIDGE = "BRIDGE",
+    WITNESS = "WITNESS",
+    GUEST = "GUEST",
+    NOT_LOGGED = "",
 }
 
 export type Account = {

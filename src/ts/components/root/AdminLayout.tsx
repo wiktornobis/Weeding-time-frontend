@@ -1,11 +1,12 @@
 import SidebarMenu from "@/ts/components/Menu/SidebarMenu";
 import Topbar from "@/ts/components/Menu/Topbar";
 import { useState } from "react";
-import { RoleAccount } from "@/api/Account/types.ts";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store.ts";
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+    const { userRole } = useSelector((state: RootState) => state.auth);
     const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
-    let userRole = RoleAccount.Admin;
 
     return (
         <div className="app">
