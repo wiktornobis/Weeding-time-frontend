@@ -1,7 +1,7 @@
 export enum RoleAccount {
     ADMIN = "ADMIN",
     GROOM = "GROOM",
-    BRIDGE = "BRIDGE",
+    BRIDE = "BRIDE",
     WITNESS = "WITNESS",
     GUEST = "GUEST",
     NOT_LOGGED = "",

@@ -22,7 +22,7 @@ const App = () => {
             <Routes>
                 <Route path="/login" element={<Login />} />
 
-                <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN, RoleAccount.GUEST]} />}>
+                <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN]} />}>
                     <Route
                         path="/admin/dashboard"
                         element={<AdminLayout><Dashboard /> </AdminLayout>}
@@ -33,7 +33,7 @@ const App = () => {
                     />
                 </Route>
 
-                <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN, RoleAccount.GUEST]} />}>
+                <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN, RoleAccount.GROOM, RoleAccount.BRIDE, RoleAccount.WITNESS, RoleAccount.GUEST]} />}>
                     <Route path="/moje-konto" element={<Account />} />
                 </Route>
 
@@ -44,10 +44,16 @@ const App = () => {
                             <main className="content">
                                 <Routes>
                                     <Route index element={<Home />} />
-                                    <Route path="/goscie" element={<Guests />} />
-                                    <Route path="/kalendarz" element={<Calendar />} />
-                                    <Route path="/planer-stolow" element={<TablePlanner />} />
-                                    <Route path="/pliki-do-pobrania" element={<DownloadFiles />} />
+                                    <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN, RoleAccount.GROOM, RoleAccount.BRIDE, RoleAccount.WITNESS]} />}>
+                                        <Route path="/goscie" element={<Guests />} />
+                                        <Route path="/kalendarz" element={<Calendar />} />
+                                        <Route path="/planer-stolow" element={<TablePlanner />} />
+                                        <Route path="/pliki-do-pobrania" element={<DownloadFiles />} />
+                                    </Route>
+
+                                    <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN, RoleAccount.GROOM, RoleAccount.BRIDE, RoleAccount.GUEST, ]} />}>
+                                        <Route path="/przyjecie" element={<TablePlanner />} />
+                                    </Route>
                                 </Routes>
                             </main>
                         </div>
