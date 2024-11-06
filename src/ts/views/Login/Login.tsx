@@ -3,7 +3,9 @@ import LoginForm from "@/ts/components/Form/LoginForm/LoginForm.tsx";
 const Login = () => {
     return (
         <>
-            <LoginForm />
+            <section className="login_page">
+                <LoginForm />
+            </section>
         </>
     );
 };

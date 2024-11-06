@@ -50,7 +50,8 @@ export default function App() {
 
     return (
         <form onSubmit={onSubmit} className="login_form">
-            {/* Email Field */}
+            <h2>Logowanie</h2>
+
             <TextField
                 label="Email"
                 {...register("email")}
@@ -71,6 +72,7 @@ export default function App() {
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                className="white"
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -82,18 +84,16 @@ export default function App() {
                 }}
             />
 
-            {/* Display loading state */}
-            {mutation.isLoading && <CircularProgress size={24} />}
-
-            {/* Display error message */}
             {mutation.isError && (
-                <span>Nieprawidłowy login lub hasło.</span>
+                <p className="err-msg">Nieprawidłowy login lub hasło.</p>
             )}
 
-            {/* Login button */}
-            <Button type="submit" variant="contained" color="primary" disabled={mutation.isLoading}>
-                Zaloguj się
+            <Button className="btn-login" type="submit" variant="contained">
+                {mutation.isLoading ? <CircularProgress size={24} color="inherit" /> : 'Zaloguj się'}
             </Button>
+
+            <h4>Nie posiadasz jeszcze konta?</h4>
+            <a href="/rejestracja">Zarejestruj się</a>
         </form>
     );
 }

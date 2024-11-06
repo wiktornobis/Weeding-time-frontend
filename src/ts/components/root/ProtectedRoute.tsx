@@ -19,7 +19,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles = [] }) =>
     console.log(userAuth, 'user Auth');
 
     if (!userAuth) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/logowanie" />;
     }
 
     // Sprawdzenie ról (jeśli allowedRoles jest puste, dostęp dla wszystkich)

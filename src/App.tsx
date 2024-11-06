@@ -20,7 +20,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/login" element={<Login />} />
+                <Route path="/logowanie" element={<Login />} />
 
                 <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN]} />}>
                     <Route

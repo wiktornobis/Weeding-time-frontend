@@ -1,6 +1,7 @@
 @import "mixins";
 
 // Zmienne
+$color-white: #ffffff;
 $color-primary: #8739F9;
 $color-secondary: #37B9F1;
 $color-tertiary: #F2F5F5;
@@ -15,7 +16,7 @@ $color-text: #565360;
 $color-text-label: #908E9B;
 $color-text-disabled: #E1DFE9;
 
-
+$color-red: #d32f2f;
 
 $size-base-font: 16px;
 $font-size-xs: 0.5rem;
@@ -67,7 +68,6 @@ $spacing-xxl: 150px;
   }
 }
 
-
 @mixin base-width {
   max-width: $desktop;
   margin-bottom: 100px;
@@ -96,3 +96,22 @@ $spacing-xxl: 150px;
   }
 }
 
+.bg-black-apla {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+.text-underline {
+  transition: all .25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
