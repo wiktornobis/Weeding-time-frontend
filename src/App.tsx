@@ -14,6 +14,8 @@ import DownloadFiles from "@/ts/views/DownloadFiles/DownloadFiles";
 import Guests from "@/ts/views/Guests/Guests";
 import TablePlanner from "@/ts/views/TablePlanner/TablePlanner";
 import Account from "@/ts/views/Account/Account.tsx";
+import NotFound from "@/ts/views/NotFound/NotFound.tsx";
+import Registration from "@/ts/views/Registration/Registration.tsx";
 
 const App = () => {
 
@@ -21,6 +23,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/logowanie" element={<Login />} />
+                <Route path="/rejestracja" element={<Registration />} />
 
                 <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN]} />}>
                     <Route
@@ -54,6 +57,7 @@ const App = () => {
                                     <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN, RoleAccount.GROOM, RoleAccount.BRIDE, RoleAccount.GUEST, ]} />}>
                                         <Route path="/przyjecie" element={<TablePlanner />} />
                                     </Route>
+                                    <Route path="*" element={<NotFound />} />
                                 </Routes>
                             </main>
                         </div>
