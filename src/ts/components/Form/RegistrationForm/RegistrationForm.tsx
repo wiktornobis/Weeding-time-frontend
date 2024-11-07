@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TextField, Button, InputAdornment, CircularProgress } from '@mui/material';
-import { formLoginSchema } from "@/ts/views/Login/FormLoginSchema.ts";
+import { formRegistrationSchema } from "@/ts/views/Registration/FormRegistrationSchema.ts";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { fetchToken } from "@/api/User/fetchers";
@@ -15,19 +15,23 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from 'react-query';
 
 // Define form schema type
-type FormValues = z.infer<typeof formLoginSchema>;
+type FormValues = z.infer<typeof formRegistrationSchema>;
 
-export default function LoginForm() {
+export default function RegistrationForm() {
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
+    const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
-        resolver: zodResolver(formLoginSchema),
+        resolver: zodResolver(formRegistrationSchema),
     });
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+    const toggleRepeatPasswordVisibility = () => {
+        setShowRepeatPassword(!showRepeatPassword);
     };
 
     // Set up useMutation for login
@@ -36,7 +40,7 @@ export default function LoginForm() {
         {
             onSuccess: (tokenData) => {
                 dispatch(login(tokenData));
-                navigate("/");
+                navigate("/logowanie");
             },
             onError: (error) => {
                 console.error("Login failed:", error);
@@ -50,7 +54,7 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={onSubmit} className="login_form">
-            <h2>Logowanie</h2>
+            <h2>Rejestracja</h2>
 
             <TextField
                 label="Email"
@@ -62,7 +66,6 @@ export default function LoginForm() {
                 margin="normal"
             />
 
-            {/* Password Field */}
             <TextField
                 label="Hasło"
                 type={showPassword ? "text" : "password"}
@@ -84,19 +87,35 @@ export default function LoginForm() {
                 }}
             />
 
+            <TextField
+                label="Powtórz hasło"
+                type={showRepeatPassword ? "text" : "password"}
+                {...register("password")}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                className="white"
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <Button onClick={toggleRepeatPasswordVisibility}>
+                                {showRepeatPassword ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                            </Button>
+                        </InputAdornment>
+                    ),
+                }}
+            />
+
             {mutation.isError && (
                 <p className="err-msg">Nieprawidłowy login lub hasło.</p>
             )}
 
             <Button className="btn-login" type="submit" variant="contained">
-                {mutation.isLoading ? <CircularProgress size={24} color="inherit" /> : 'Zaloguj się'}
+                {mutation.isLoading ? <CircularProgress size={24} color="inherit" /> : 'Zarejestruj się'}
             </Button>
 
-            <h4>Nie pamiętasz hasła?</h4>
-            <a href="/przypomnienie-hasla">Zresetuj hasło</a>
-
-            <h4>Nie posiadasz jeszcze konta?</h4>
-            <a href="/rejestracja">Zarejestruj się</a>
         </form>
     );
 }

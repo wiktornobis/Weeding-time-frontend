@@ -16,6 +16,7 @@ import TablePlanner from "@/ts/views/TablePlanner/TablePlanner";
 import Account from "@/ts/views/Account/Account.tsx";
 import NotFound from "@/ts/views/NotFound/NotFound.tsx";
 import Registration from "@/ts/views/Registration/Registration.tsx";
+import PasswordRemind from "@/ts/views/PasswordRemind/PasswordRemind.tsx";
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
             <Routes>
                 <Route path="/logowanie" element={<Login />} />
                 <Route path="/rejestracja" element={<Registration />} />
+                <Route path="/przypomnienie-hasla" element={<PasswordRemind />} />
 
                 <Route element={<ProtectedRoute allowedRoles={[RoleAccount.ADMIN]} />}>
                     <Route

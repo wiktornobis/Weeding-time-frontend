@@ -1,8 +1,10 @@
+import RegistrationForm from "@/ts/components/Form/RegistrationForm/RegistrationForm.tsx";
+
 const Registration = () => {
     return (
-        <>
-            Rejestracja
-        </>
+        <section className="login_page">
+            <RegistrationForm />
+        </section>
     );
 };
 
