@@ -3,8 +3,20 @@ import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TextField, Button, InputAdornment, CircularProgress } from '@mui/material';
+import {
+    TextField,
+    Button,
+    InputAdornment,
+    CircularProgress,
+    MenuItem,
+    FormControl,
+    InputLabel,
+} from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { formRegistrationSchema } from "@/ts/views/Registration/FormRegistrationSchema.ts";
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { fetchToken } from "@/api/User/fetchers";
@@ -13,8 +25,8 @@ import { AppDispatch } from "@/redux/store.ts";
 import { login } from "@/redux/reducers/user/user-slice.ts";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from 'react-query';
+import dayjs, { Dayjs } from 'dayjs';
 
-// Define form schema type
 type FormValues = z.infer<typeof formRegistrationSchema>;
 
 export default function RegistrationForm() {
@@ -22,6 +34,8 @@ export default function RegistrationForm() {
     const dispatch: AppDispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+    const [value, setValue] = useState<Dayjs | null>(dayjs());
+    const [role, setRole] = useState("");
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
         resolver: zodResolver(formRegistrationSchema),
@@ -33,8 +47,17 @@ export default function RegistrationForm() {
     const toggleRepeatPasswordVisibility = () => {
         setShowRepeatPassword(!showRepeatPassword);
     };
+    const roles = [
+        { value: "Panna Młoda", label: "Panna Młoda" },
+        { value: "Pan Młody", label: "Pan Młody" },
+        { value: "Gość", label: "Gość" },
+        { value: "Świadkowa", label: "Świadkowa" },
+        { value: "Świadek", label: "Świadek" },
+    ];
+    const handleChange = (event: SelectChangeEvent) => {
+        setRole(event.target.value as string);
+    };
 
-    // Set up useMutation for login
     const mutation = useMutation(
         (data: FormValues) => fetchToken(data.email, data.password),
         {
@@ -107,6 +130,32 @@ export default function RegistrationForm() {
                     ),
                 }}
             />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+                className="data-picker"
+                label="Data Ślubu"
+                value={value}
+                onChange={(newValue) => setValue(newValue)}
+                minDate={value ?? undefined}
+            />
+            </LocalizationProvider>
+
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Rola</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={role}
+                    label="Rola"
+                    onChange={handleChange}
+                >
+                    {roles.map((role) => (
+                        <MenuItem key={role.value} value={role.value}>
+                            {role.label}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
 
             {mutation.isError && (
                 <p className="err-msg">Nieprawidłowy login lub hasło.</p>

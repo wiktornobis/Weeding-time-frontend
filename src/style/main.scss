@@ -64,6 +64,13 @@ body {
   color: $color-red;
   font-size: 0.75rem;
 }
+.data-picker {
+  margin: $spacing-xxs 0 !important;
+  width: 100%;
+  div {
+    padding-right: 18px;
+  }
+}
 
 // Animations
 

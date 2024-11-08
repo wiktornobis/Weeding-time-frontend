@@ -3,7 +3,7 @@ export enum RoleAccount {
     GROOM = "GROOM",
     BRIDE = "BRIDE",
     WITNESS = "WITNESS",
-    GUEST = "GUEST",
+    GUEST = "GOŚĆ",
     NOT_LOGGED = "",
 }
 

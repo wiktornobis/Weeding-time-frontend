@@ -1,0 +1,54 @@
+@import "@/style/params";
+
+.registration_page {
+  height: 100vh;
+  background: url("@/assets/login-bg.jpg") no-repeat center;
+  background-size: cover;
+  margin: 0;
+  @extend .bg-black-apla;
+
+  * {
+    color: $color-tertiary !important;
+  }
+
+  .login_form {
+    width: min(90%, 450px);
+    margin: 0 auto;
+    padding: $spacing-xs $spacing-md $spacing-md;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    position: relative;
+    top: $spacing-xxl;
+
+    h2 {
+      margin-bottom: $spacing-xs;
+    }
+
+    fieldset {
+      border-color: $color-text-label;
+      background: none !important;
+    }
+
+    .err-msg,
+    p {
+      color: $color-red !important;
+      margin: 5px 0 0;
+    }
+
+    button.btn-login {
+      margin-top: 30px;
+      min-width: 120px;
+    }
+    h4 {
+      margin: $spacing-xs 0 0;
+      font-size: 12px;
+      color: $color-text;
+    }
+    a {
+      font-size: 12px;
+      color: $color-primary-dark !important;
+      @extend .text-underline;
+    }
+  }
+}
+
