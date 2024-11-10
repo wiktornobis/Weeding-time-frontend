@@ -6,7 +6,10 @@ enum QueryKeys {
     User = "User",
 }
 
-export const useAuthApi = (email: string, encryptedPassword: string) =>
+export const useAuthApi = (
+    email: string,
+    encryptedPassword: string
+) =>
     useQuery<AuthResponseData, Error>({
         queryKey: [QueryKeys.User, email, encryptedPassword],  // Klucz zapytania, zależny od argumentów
         queryFn: () => fetchToken(email, encryptedPassword),

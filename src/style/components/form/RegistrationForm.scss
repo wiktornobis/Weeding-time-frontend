@@ -1,4 +1,4 @@
-@import "@/style/params";
+@import "../../params";
 
 .registration_page {
   height: 100vh;
@@ -11,14 +11,14 @@
     color: $color-tertiary !important;
   }
 
-  .login_form {
+  .registration_form {
     width: min(90%, 450px);
     margin: 0 auto;
-    padding: $spacing-xs $spacing-md $spacing-md;
-    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px $spacing-xs;
+    @extend .bg-black-transparent;
     border-radius: 4px;
     position: relative;
-    top: $spacing-xxl;
+    top: $spacing-xs;
 
     h2 {
       margin-bottom: $spacing-xs;
@@ -48,6 +48,10 @@
       font-size: 12px;
       color: $color-primary-dark !important;
       @extend .text-underline;
+    }
+
+    @include tablet {
+      padding: $spacing-xs $spacing-md $spacing-md;
     }
   }
 }

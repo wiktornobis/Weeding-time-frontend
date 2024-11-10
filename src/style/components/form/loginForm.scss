@@ -1,4 +1,4 @@
-@import "@/style/params";
+@import "../../params";
 
 .login_page {
   height: 100vh;
@@ -15,8 +15,8 @@
     width: min(90%, 450px);
     margin: 0 auto;
     padding: $spacing-xs $spacing-md $spacing-md;
-    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 4px;
+    @extend .bg-black-transparent;
     position: relative;
     top: $spacing-xxl;
 

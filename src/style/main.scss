@@ -47,6 +47,14 @@ body {
   }
 
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.8) inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
 .app {
   display: flex;
   .content {
@@ -60,6 +68,11 @@ body {
     fill: $color-quaternary;
   }
 }
+// Style for mui elements
+
+.MuiFormControl-root {
+  margin: 7px 0 !important;
+}
 .err-msg {
   color: $color-red;
   font-size: 0.75rem;
@@ -71,6 +84,24 @@ body {
     padding-right: 18px;
   }
 }
+span.MuiFormLabel-asterisk {
+  color: $color-red !important;
+}
+ul.MuiList-root {
+  text-transform: uppercase;
+ li {
+   font-size: 13px;
+   &:hover {
+     background: $color-primary-dark;
+     color: $color-tertiary;
+   }
+   &.Mui-selected {
+     background: $color-primary-dark;
+     color: $color-tertiary;
+   }
+ }
+}
+// end
 
 // Animations
 

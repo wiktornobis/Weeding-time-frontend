@@ -1,7 +1,5 @@
 import { BASE_URL_LOGIN } from "@/ts/constants/variables";
-// import { AuthResponseData } from "../common/types";
 
-// Funkcja fetchToken przyjmuje dynamiczne argumenty
 export const fetchToken = async (
     email: string,
     encryptedPassword: string

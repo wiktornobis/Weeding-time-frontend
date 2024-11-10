@@ -96,6 +96,9 @@ $spacing-xxl: 150px;
   }
 }
 
+.bg-black-transparent {
+  background-color: rgba(0, 0, 0, 0.7);
+}
 .bg-black-apla {
   position: relative;
   &:before {
