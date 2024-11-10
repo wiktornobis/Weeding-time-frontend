@@ -3,7 +3,7 @@ import { fetchToken } from "./fetchers";
 import { AuthResponseData } from "../common/types";
 
 enum QueryKeys {
-    User = "User",
+    Login = "Login",
 }
 
 export const useAuthApi = (
@@ -11,7 +11,7 @@ export const useAuthApi = (
     encryptedPassword: string
 ) =>
     useQuery<AuthResponseData, Error>({
-        queryKey: [QueryKeys.User, email, encryptedPassword],  // Klucz zapytania, zależny od argumentów
+        queryKey: [QueryKeys.Login, email, encryptedPassword],  // Klucz zapytania, zależny od argumentów
         queryFn: () => fetchToken(email, encryptedPassword),
         staleTime: 1000 * 10,  // 10 sekund
     });

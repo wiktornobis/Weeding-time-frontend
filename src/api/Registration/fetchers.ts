@@ -7,8 +7,8 @@ export const registration = async (
     tel: string | null,
     encryptedPassword: string,
     role: string,
-    weddingDate: string,
-    accessCode?: string
+    weddingDate: Date,
+    accessCode: string | undefined
 ) => {
     const response = await fetch(BASE_URL_REGISTRATION, {
         method: "POST",
@@ -30,6 +30,6 @@ export const registration = async (
     if (!response.ok) {
         throw new Error("Failed to registration");
     }
-
     return await response.json();
 };
+

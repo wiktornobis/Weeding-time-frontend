@@ -1,19 +1,12 @@
+
 import { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-    TextField,
-    Button,
-    InputAdornment,
-    CircularProgress,
-    MenuItem,
-    FormControl,
-    InputLabel, SelectChangeEvent,
-} from '@mui/material';
+import { TextField, Button, InputAdornment, CircularProgress, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { formRegistrationSchema } from "@/ts/views/Registration/FormRegistrationSchema.ts";
+import { formRegistrationSchema } from "@/ts/views/Registration/FormRegistrationSchema";
 import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
@@ -41,6 +34,7 @@ export default function RegistrationForm() {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
     const toggleRepeatPasswordVisibility = () => {
         setShowConfirmPassword(!showConfirmPassword);
     };
@@ -75,7 +69,7 @@ export default function RegistrationForm() {
     const accessCodeRequired = !["Pan Młody", "Panna Młoda"].includes(selectedRole);
 
     const mutation = useMutation(
-        (data: FormValues) => registration(data.firstName, data.lastName, data.email, data?.tel, data.password, data.weddingDate, data?.accessCode),
+        (data: FormValues) => registration(data.firstName, data.lastName, data.email, data.tel, data.password, data.role, data.weddingDate, data.accessCode),
         {
             onSuccess: () => {
                 navigate("/logowanie");
@@ -107,24 +101,24 @@ export default function RegistrationForm() {
 
             <TextField
                 label="Nazwisko"
-                required
                 {...register("lastName")}
                 error={!!errors.lastName}
                 helperText={errors.lastName?.message}
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                required
             />
 
             <TextField
                 label="Email"
-                required
                 {...register("email")}
                 error={!!errors.email}
                 helperText={errors.email?.message}
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                required
             />
 
             <TextField
@@ -136,11 +130,11 @@ export default function RegistrationForm() {
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                required
             />
 
             <TextField
                 label="Hasło"
-                required
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
                 error={!!errors.password}
@@ -148,6 +142,7 @@ export default function RegistrationForm() {
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                required
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -161,7 +156,6 @@ export default function RegistrationForm() {
 
             <TextField
                 label="Powtórz hasło"
-                required
                 type={showConfirmPassword ? "text" : "password"}
                 {...register("confirmPassword")}
                 error={!!errors.confirmPassword}
@@ -169,6 +163,7 @@ export default function RegistrationForm() {
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                required
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -179,12 +174,13 @@ export default function RegistrationForm() {
                     ),
                 }}
             />
+
             <FormControl fullWidth>
                 <InputLabel id="role-select-label">Twoja rola na weselu</InputLabel>
                 <Select
                     labelId="role-select-label"
-                    id="role-select"
                     value={selectedRole}
+                    {...register("role")}
                     onChange={handleChange}
                     label="Twoja rola na weselu"
                 >
@@ -229,7 +225,7 @@ export default function RegistrationForm() {
             )}
 
             {mutation.isError && (
-                <p className="err-msg">Nieprawidłowy login lub hasło.</p>
+                <p className="err-msg">Błąd poczas rejestracji</p>
             )}
 
             <Button className="btn-login" type="submit" variant="contained">

@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchRegistration } from "./fetchers";
+import { registration } from "./fetchers";
 import { AuthResponseData } from "../common/types";
 
 enum QueryKeys {
@@ -13,14 +13,14 @@ export const useRegisterApi = (
     tel: string | null,
     encryptedPassword: string,
     role: string,
-    weddingDate: string,
-    accessCode?: string
+    weddingDate: Date,
+    accessCode?: string | undefined
 ) => {
     return useQuery<AuthResponseData, Error>({
         queryKey: [
-            QueryKeys.Registration, firstName, lastName, email, encryptedPassword, role, weddingDate, accessCode,
+            QueryKeys.Registration, firstName, lastName, email, tel, encryptedPassword, role, weddingDate, accessCode,
         ],
         queryFn: () =>
-            fetchRegistration(firstName, lastName, email, tel, encryptedPassword, role, weddingDate, accessCode),
+            registration(firstName, lastName, email, tel, encryptedPassword, role, weddingDate, accessCode),
     });
 };

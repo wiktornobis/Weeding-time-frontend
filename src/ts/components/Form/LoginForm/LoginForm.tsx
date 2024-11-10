@@ -7,7 +7,7 @@ import { TextField, Button, InputAdornment, CircularProgress } from '@mui/materi
 import { formLoginSchema } from "@/ts/views/Login/FormLoginSchema.ts";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { fetchToken } from "@/api/User/fetchers";
+import { fetchToken } from "@/api/Login/fetchers";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from "@/redux/store.ts";
 import { login } from "@/redux/reducers/user/user-slice.ts";
