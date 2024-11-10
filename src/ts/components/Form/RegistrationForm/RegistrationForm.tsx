@@ -18,10 +18,7 @@ import Select from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { fetchRegistration } from "@/api/Registration/fetchers";
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from "@/redux/store.ts";
-import { login } from "@/redux/reducers/user/user-slice.ts";
+import { registration } from "@/api/Registration/fetchers";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from 'react-query';
 import dayjs, { Dayjs } from 'dayjs';
@@ -30,10 +27,9 @@ type FormValues = z.infer<typeof formRegistrationSchema>;
 
 export default function RegistrationForm() {
     const navigate = useNavigate();
-    const dispatch: AppDispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
-    const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [value, setValue] = useState<Dayjs | null>(dayjs());
     const [selectedRole, setSelectedRole] = useState('');
     const [accessCode, setAccessCode] = useState('');
@@ -46,7 +42,7 @@ export default function RegistrationForm() {
         setShowPassword(!showPassword);
     };
     const toggleRepeatPasswordVisibility = () => {
-        setShowRepeatPassword(!showRepeatPassword);
+        setShowConfirmPassword(!showConfirmPassword);
     };
 
     const roles = [
@@ -79,10 +75,9 @@ export default function RegistrationForm() {
     const accessCodeRequired = !["Pan Młody", "Panna Młoda"].includes(selectedRole);
 
     const mutation = useMutation(
-        (data: FormValues) => fetchRegistration(data.firstName, data.lastName, data.email, data?.tel, data.password, data.weddingDate, data?.accessCode),
+        (data: FormValues) => registration(data.firstName, data.lastName, data.email, data?.tel, data.password, data.weddingDate, data?.accessCode),
         {
-            onSuccess: (tokenData) => {
-                dispatch(login(tokenData));
+            onSuccess: () => {
                 navigate("/logowanie");
             },
             onError: (error) => {
@@ -167,10 +162,10 @@ export default function RegistrationForm() {
             <TextField
                 label="Powtórz hasło"
                 required
-                type={showRepeatPassword ? "text" : "password"}
-                {...register("password")}
-                error={!!errors.password}
-                helperText={errors.password?.message}
+                type={showConfirmPassword ? "text" : "password"}
+                {...register("confirmPassword")}
+                error={!!errors.confirmPassword}
+                helperText={errors.confirmPassword?.message}
                 variant="outlined"
                 fullWidth
                 margin="normal"
@@ -178,7 +173,7 @@ export default function RegistrationForm() {
                     endAdornment: (
                         <InputAdornment position="end">
                             <Button onClick={toggleRepeatPasswordVisibility}>
-                                {showRepeatPassword ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                                {showConfirmPassword ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
                             </Button>
                         </InputAdornment>
                     ),

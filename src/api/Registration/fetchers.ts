@@ -1,6 +1,6 @@
 import { BASE_URL_REGISTRATION } from "@/ts/constants/variables";
 
-export const fetchRegistration = async (
+export const registration = async (
     firstName: string,
     lastName: string,
     email: string,
