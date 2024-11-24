@@ -9,10 +9,10 @@ export const formRegistrationSchema = z.object({
     password: z.string().min(6, { message: "Hasło musi mieć przynajmniej 6 znaków" }),
     confirmPassword: z.string().min(6, { message: "Powtórzenie hasła musi mieć przynajmniej 6 znaków" }),
     role: z.string().min(1, { message: "Wybierz rolę" }),
-    weddingDate: z.date().optional(),
+    weddingDate: z.union([z.date(), z.null()]).optional(),
     accessCode: z.string().optional(),
 }).refine(data => data.password === data.confirmPassword, {
-    message: "Hasła muszą się zgadzać",
+    message: "Hasła muszą być identyczne",
     path: ["confirmPassword"],
 });
 
