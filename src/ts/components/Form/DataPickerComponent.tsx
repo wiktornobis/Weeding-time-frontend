@@ -30,6 +30,7 @@ const DatePickerComponent = ({ name, control, label, error, helperText }: DatePi
                                 variant: "outlined",
                                 error: error,
                                 helperText: helperText,
+                                style: { width: "100%" },
                             },
                         }}
                     />

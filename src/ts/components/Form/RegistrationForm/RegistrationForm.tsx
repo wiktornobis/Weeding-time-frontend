@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, CircularProgress, } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { registration } from "@/api/Registration/fetchers";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
@@ -18,14 +18,23 @@ type FormValues = z.infer<typeof formRegistrationSchema>;
 
 export default function RegistrationForm() {
     const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [selectedRole, setSelectedRole] = useState<string>('');
-    const [accessCode, setAccessCode] = useState('');
 
-    const { register, handleSubmit, control, formState: { errors } } = useForm<FormValues>({
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        watch,
+        control,
+        formState: { errors }
+    } = useForm<FormValues>({
+        defaultValues: {
+            role: '',
+        },
         resolver: zodResolver(formRegistrationSchema),
     });
+
+    // Watch the "role" field
+    const selectedRole = watch("role");
 
     const roles = [
         { value: "Panna Młoda", label: "Panna Młoda" },
@@ -36,28 +45,6 @@ export default function RegistrationForm() {
     ];
 
     const accessCodeRequired = !["Pan Młody", "Panna Młoda"].includes(selectedRole);
-
-    const togglePasswordVisibility = () => setShowPassword(!showPassword);
-    const toggleRepeatPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
-
-    const handleRoleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
-        setSelectedRole(e.target.value as string); // rzutowanie value na string
-    };
-
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const roleFromParam = params.get("role");
-        const accessCodeParam = params.get("accessCode");
-
-        accessCodeParam ? setAccessCode(accessCodeParam) : setAccessCode("");
-
-        if (roleFromParam) {
-            const matchedRole = roles.find((r) => r.value === roleFromParam);
-            if (matchedRole) {
-                setSelectedRole(matchedRole.value);
-            }
-        }
-    }, []);
 
     const mutation = useMutation(
         (data: FormValues) => registration(data.firstName, data.lastName, data.email, data.tel, data.password, data.role, data.weddingDate as Date, data.accessCode),
@@ -72,14 +59,28 @@ export default function RegistrationForm() {
     const onSubmit = handleSubmit((formData) => {
         const payload = {
             ...formData,
-            // weddingDate: formData.weddingDate ? dayjs(formData.weddingDate).format("DD.MM.YYYY") : null, - format polski
-            weddingDate: formData.weddingDate ? dayjs(formData.weddingDate).toDate() : null, // format iso
+            weddingDate: formData.weddingDate ? dayjs(formData.weddingDate).toDate() : null, // format ISO
         };
         mutation.mutate(payload);
     });
 
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const roleFromParam = params.get("role");
+        const accessCodeParam = params.get("accessCode");
+
+        accessCodeParam ? setValue("accessCode", accessCodeParam) : setValue("accessCode", "");
+
+        if (roleFromParam) {
+            const matchedRole = roles.find((r) => r.value === roleFromParam);
+            if (matchedRole) {
+                setValue("role", matchedRole.value);
+            }
+        }
+    }, []);
+
     return (
-        <form onSubmit={onSubmit} className="registration_form" >
+        <form onSubmit={onSubmit} className="registration_form">
             <h2>Rejestracja</h2>
 
             <InputFieldComponent
@@ -117,8 +118,6 @@ export default function RegistrationForm() {
             <InputFieldComponent
                 label="Hasło"
                 type="password"
-                showPassword={showPassword}
-                togglePasswordVisibility={togglePasswordVisibility}
                 error={!!errors.password}
                 helperText={errors.password?.message}
                 register={register}
@@ -127,22 +126,18 @@ export default function RegistrationForm() {
             <InputFieldComponent
                 label="Powtórz hasło"
                 type="password"
-                showPassword={showConfirmPassword}
-                togglePasswordVisibility={toggleRepeatPasswordVisibility}
                 error={!!errors.confirmPassword}
                 helperText={errors.confirmPassword?.message}
                 register={register}
                 name="confirmPassword"
             />
             <SelectFieldComponent
-                label="Twoja rola na weselu"
-                value={selectedRole}
-                onChange={handleRoleChange} // Używamy handleRoleChange do obsługi zmiany
+                label="Rola"
+                name="role"
+                control={control}
                 error={!!errors.role}
                 helperText={errors.role?.message}
-                options={roles}
-                register={register}
-                name="role"
+                options={roles.map(role => ({ value: role.value, label: role.label }))}
             />
 
             {!accessCodeRequired && (
@@ -156,12 +151,11 @@ export default function RegistrationForm() {
             )}
             {accessCodeRequired && (
                 <AccessCodeFieldComponent
-                    value={accessCode}
-                    onChange={(e) => setAccessCode(e.target.value)}
+                    control={control}
+                    name="accessCode"
                     error={!!errors.accessCode}
                     helperText={errors.accessCode?.message}
-                    register={register}
-                    name="accessCode" />
+                />
             )}
 
             {mutation.isError && <p className="err-msg">Błąd podczas rejestracji. Spróbuj ponownie.</p>}

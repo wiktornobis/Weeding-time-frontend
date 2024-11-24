@@ -1,33 +1,36 @@
 import { TextField } from "@mui/material";
-import React from "react";
+import { Controller } from "react-hook-form";
 
 type AccessCodeFieldComponentProps = {
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    control: any;
+    name: string;
     error: boolean;
     helperText: string | undefined;
-    register: any;
-    name: string
 };
 
-const AccessCodeFieldComponent = ({ value, onChange, error, helperText, register, name }: AccessCodeFieldComponentProps) => {
+const AccessCodeFieldComponent = ({ control, name, error, helperText,}: AccessCodeFieldComponentProps) => {
     return (
-        <TextField
-            label="Kod dostępu"
-            value={value}
-            onChange={onChange}
-            error={error}
-            helperText={helperText}
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            required
-            sx={{
-                "& .MuiInputBase-input": {
-                    textTransform: "uppercase",
-                },
-            }}
-            {...register(name)}
+        <Controller
+            name={name}
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+                <TextField
+                    {...field}
+                    label="Kod dostępu"
+                    error={error}
+                    helperText={helperText}
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    required
+                    sx={{
+                        "& .MuiInputBase-input": {
+                            textTransform: "uppercase",
+                        },
+                    }}
+                />
+            )}
         />
     );
 };
