@@ -1,6 +1,4 @@
-import { TextField, InputAdornment, Button } from "@mui/material";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { TextField } from "@mui/material";
 import React from "react";
 
 type InputFieldProps = {
@@ -13,21 +11,9 @@ type InputFieldProps = {
     showPassword?: boolean;
     register: any;
     name: string;
-    togglePasswordVisibility?: () => void;
 };
 
-const InputFieldComponent = ({
-        label,
-        type,
-        value,
-        onChange,
-        error,
-        helperText,
-        showPassword = false,
-        register,
-        name,
-        togglePasswordVisibility,
-    }: InputFieldProps) => {
+const InputFieldComponent = ({label, type, value, onChange, error, helperText, showPassword = false, register, name,}: InputFieldProps) => {
     return (
         <TextField
             label={label}
@@ -41,19 +27,6 @@ const InputFieldComponent = ({
             fullWidth
             margin="normal"
             required
-            InputProps={
-                togglePasswordVisibility
-                    ? {
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <Button onClick={togglePasswordVisibility}>
-                                    {showPassword ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
-                                </Button>
-                            </InputAdornment>
-                        ),
-                    }
-                    : undefined
-            }
         />
     );
 };

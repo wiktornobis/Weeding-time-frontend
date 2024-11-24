@@ -13,6 +13,7 @@ import InputFieldComponent from "@/ts/components/Form/InputFieldComponent.tsx";
 import SelectFieldComponent from "@/ts/components/Form/SelectFieldComponent.tsx";
 import DataPickerComponent from "@/ts/components/Form/DataPickerComponent.tsx";
 import AccessCodeFieldComponent from "@/ts/components/Form/AccessCodeFieldComponent.tsx";
+import InputFieldPasswordComponent from "@/ts/components/Form/InputFieldPasswordComponent.tsx";
 
 type FormValues = z.infer<typeof formRegistrationSchema>;
 
@@ -33,7 +34,6 @@ export default function RegistrationForm() {
         resolver: zodResolver(formRegistrationSchema),
     });
 
-    // Watch the "role" field
     const selectedRole = watch("role");
 
     const roles = [
@@ -115,21 +115,22 @@ export default function RegistrationForm() {
                 register={register}
                 name="tel"
             />
-            <InputFieldComponent
+            <InputFieldPasswordComponent
                 label="Hasło"
-                type="password"
                 error={!!errors.password}
                 helperText={errors.password?.message}
                 register={register}
                 name="password"
+                discoverPassword={true}
             />
-            <InputFieldComponent
+
+            <InputFieldPasswordComponent
                 label="Powtórz hasło"
-                type="password"
                 error={!!errors.confirmPassword}
                 helperText={errors.confirmPassword?.message}
                 register={register}
                 name="confirmPassword"
+                discoverPassword={true}
             />
             <SelectFieldComponent
                 label="Rola"
