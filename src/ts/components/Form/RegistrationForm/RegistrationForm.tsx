@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,16 +9,17 @@ import { useMutation } from "react-query";
 import dayjs from "dayjs";
 import 'dayjs/locale/pl';
 import { formRegistrationSchema } from "@/ts/views/Registration/FormRegistrationSchema";
-import InputFieldComponent from "@/ts/components/Form/InputFieldComponent.tsx";
-import SelectFieldComponent from "@/ts/components/Form/SelectFieldComponent.tsx";
-import DataPickerComponent from "@/ts/components/Form/DataPickerComponent.tsx";
-import AccessCodeFieldComponent from "@/ts/components/Form/AccessCodeFieldComponent.tsx";
-import InputFieldPasswordComponent from "@/ts/components/Form/InputFieldPasswordComponent.tsx";
+import InputFieldComponent from "@/ts/components/Form/InputFieldComponent";
+import SelectFieldComponent from "@/ts/components/Form/SelectFieldComponent";
+import DataPickerComponent from "@/ts/components/Form/DataPickerComponent";
+import AccessCodeFieldComponent from "@/ts/components/Form/AccessCodeFieldComponent";
+import InputFieldPasswordComponent from "@/ts/components/Form/InputFieldPasswordComponent";
 
 type FormValues = z.infer<typeof formRegistrationSchema>;
 
 export default function RegistrationForm() {
     const navigate = useNavigate();
+    const [apiError, setApiError] = useState<string | null>(null);
 
     const {
         register,
@@ -26,7 +27,7 @@ export default function RegistrationForm() {
         setValue,
         watch,
         control,
-        formState: { errors }
+        formState: { errors },
     } = useForm<FormValues>({
         defaultValues: {
             role: '',
@@ -47,11 +48,24 @@ export default function RegistrationForm() {
     const accessCodeRequired = !["Pan Młody", "Panna Młoda"].includes(selectedRole);
 
     const mutation = useMutation(
-        (data: FormValues) => registration(data.firstName, data.lastName, data.email, data.tel, data.password, data.role, data.weddingDate as Date, data.accessCode),
+        (data: FormValues) =>
+            registration(
+                data.firstName,
+                data.lastName,
+                data.email,
+                data.phoneNumber,
+                data.password,
+                data.role,
+                data.weddingDate as Date,
+                data.accessCode
+            ),
         {
-            onSuccess: () => navigate("/logowanie"),
-            onError: (error) => {
-                console.error("Registration failed:", error);
+            onSuccess: () => {
+                setApiError(null);
+                navigate("/logowanie");
+            },
+            onError: (error: any) => {
+                setApiError(error.message);
             },
         }
     );
@@ -59,7 +73,7 @@ export default function RegistrationForm() {
     const onSubmit = handleSubmit((formData) => {
         const payload = {
             ...formData,
-            weddingDate: formData.weddingDate ? dayjs(formData.weddingDate).toDate() : null, // format ISO
+            weddingDate: formData.weddingDate ? dayjs(formData.weddingDate).toDate() : null,
         };
         mutation.mutate(payload);
     });
@@ -69,7 +83,7 @@ export default function RegistrationForm() {
         const roleFromParam = params.get("role");
         const accessCodeParam = params.get("accessCode");
 
-        accessCodeParam ? setValue("accessCode", accessCodeParam) : setValue("accessCode", "");
+        setValue("accessCode", accessCodeParam || "");
 
         if (roleFromParam) {
             const matchedRole = roles.find((r) => r.value === roleFromParam);
@@ -109,11 +123,11 @@ export default function RegistrationForm() {
             />
             <InputFieldComponent
                 label="Telefon"
-                type="tel"
-                error={!!errors.tel}
-                helperText={errors.tel?.message}
+                type="text"
+                error={!!errors.phoneNumber}
+                helperText={errors.phoneNumber?.message}
                 register={register}
-                name="tel"
+                name="phoneNumber"
             />
             <InputFieldPasswordComponent
                 label="Hasło"
@@ -123,7 +137,6 @@ export default function RegistrationForm() {
                 name="password"
                 discoverPassword={true}
             />
-
             <InputFieldPasswordComponent
                 label="Powtórz hasło"
                 error={!!errors.confirmPassword}
@@ -159,7 +172,7 @@ export default function RegistrationForm() {
                 />
             )}
 
-            {mutation.isError && <p className="err-msg">Błąd podczas rejestracji. Spróbuj ponownie.</p>}
+            {apiError && <p className="err-msg">{apiError}</p>}
 
             <Button type="submit" variant="contained" fullWidth>
                 {mutation.isLoading ? <CircularProgress size={24} color="inherit" /> : "Zarejestruj się"}

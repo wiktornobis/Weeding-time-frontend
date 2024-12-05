@@ -4,7 +4,6 @@ export enum RoleAccount {
     BRIDE = "BRIDE",
     WITNESS = "WITNESS",
     GUEST = "GOŚĆ",
-    NOT_LOGGED = "",
 }
 
 export type Account = {
@@ -15,6 +14,6 @@ export type Account = {
     processingData: boolean;
     email: string;
     role: RoleAccount;
-    tel: number;
+    phoneNumber: number;
     weedingDate: Date;
 };

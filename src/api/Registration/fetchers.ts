@@ -4,7 +4,7 @@ export const registration = async (
     firstName: string,
     lastName: string,
     email: string,
-    tel: string | null,
+    phoneNumber: string | null,
     encryptedPassword: string,
     role: string,
     weddingDate: Date,
@@ -19,7 +19,7 @@ export const registration = async (
             firstName,
             lastName,
             email,
-            tel,
+            phoneNumber,
             encryptedPassword,
             role,
             weddingDate,
@@ -28,8 +28,9 @@ export const registration = async (
     });
 
     if (!response.ok) {
-        throw new Error("Failed to registration");
+        const errorData = await response.json();
+        const errorMessage = errorData?.message || "Wystąpił błąd podczas rejestracji.";
+        throw new Error(errorMessage);
     }
     return await response.json();
 };
-
