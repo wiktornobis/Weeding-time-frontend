@@ -39,7 +39,7 @@ export default function LoginForm() {
                 navigate("/");
             },
             onError: (error) => {
-                console.error("Login failed:", error);
+                console.error("LoginGuest failed:", error);
             }
         }
     );
@@ -77,7 +77,7 @@ export default function LoginForm() {
                     endAdornment: (
                         <InputAdornment position="end">
                             <Button onClick={togglePasswordVisibility}>
-                                {showPassword ? <RemoveRedEyeIcon /> : <VisibilityOffIcon />}
+                                {showPassword ? <RemoveRedEyeIcon/> : <VisibilityOffIcon/>}
                             </Button>
                         </InputAdornment>
                     ),
@@ -89,7 +89,7 @@ export default function LoginForm() {
             )}
 
             <Button className="btn-login" type="submit" variant="contained">
-                {mutation.isLoading ? <CircularProgress size={24} color="inherit" /> : 'Zaloguj się'}
+                {mutation.isLoading ? <CircularProgress size={24} color="inherit"/> : 'Zaloguj się'}
             </Button>
 
             <h4>Nie pamiętasz hasła?</h4>
@@ -97,6 +97,9 @@ export default function LoginForm() {
 
             <h4>Nie posiadasz jeszcze konta?</h4>
             <a href="/rejestracja">Zarejestruj się</a>
+
+            <h4>Zaloguj się jako gość</h4>
+            <a href="/logowanie">Zaloguj się</a>
         </form>
     );
 }

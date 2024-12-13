@@ -8,7 +8,6 @@ export const registration = async (
     encryptedPassword: string,
     role: string,
     weddingDate: Date,
-    accessCode: string | undefined
 ) => {
     const response = await fetch(BASE_URL_REGISTRATION, {
         method: "POST",
@@ -23,7 +22,6 @@ export const registration = async (
             encryptedPassword,
             role,
             weddingDate,
-            accessCode,
         }),
     });
 

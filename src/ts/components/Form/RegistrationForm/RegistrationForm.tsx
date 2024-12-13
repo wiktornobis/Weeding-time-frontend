@@ -57,7 +57,6 @@ export default function RegistrationForm() {
                 data.password,
                 data.role,
                 data.weddingDate as Date,
-                data.accessCode
             ),
         {
             onSuccess: () => {
@@ -81,9 +80,9 @@ export default function RegistrationForm() {
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const roleFromParam = params.get("role");
-        const accessCodeParam = params.get("accessCode");
+        // const accessCodeParam = params.get("accessCode");
 
-        setValue("accessCode", accessCodeParam || "");
+        // setValue("accessCode", accessCodeParam || "");
 
         if (roleFromParam) {
             const matchedRole = roles.find((r) => r.value === roleFromParam);
@@ -177,6 +176,7 @@ export default function RegistrationForm() {
             <Button type="submit" variant="contained" fullWidth>
                 {mutation.isLoading ? <CircularProgress size={24} color="inherit" /> : "Zarejestruj się"}
             </Button>
+
         </form>
     );
 }

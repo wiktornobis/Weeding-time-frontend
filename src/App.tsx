@@ -17,13 +17,15 @@ import Account from "@/ts/views/Account/Account.tsx";
 import NotFound from "@/ts/views/NotFound/NotFound.tsx";
 import Registration from "@/ts/views/Registration/Registration.tsx";
 import PasswordRemind from "@/ts/views/PasswordRemind/PasswordRemind.tsx";
+import LoginGuest from "@/ts/views/LoginGuest/LoginGuest.tsx";
 
 const App = () => {
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/logowanie" element={<Login />} />
+                <Route path="/logowanie-organizator" element={<Login />} />
+                <Route path="/logowanie" element={<LoginGuest />} />
                 <Route path="/rejestracja" element={<Registration />} />
                 <Route path="/przypomnienie-hasla" element={<PasswordRemind />} />
 
