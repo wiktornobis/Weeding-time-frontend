@@ -1,5 +1,5 @@
 import Head from "@/ts/helpers/Head.tsx";
-import Spinner from "@/ts/components/Spinner.tsx";
+import Loader from "@/ts/components/Loader.tsx";
 import { RootState } from "@/redux/store.ts";
 import { useSelector } from "react-redux";
 
@@ -14,7 +14,7 @@ const Home = () => {
                 robots="index, follow"
             />
             <div className="general-container">
-                <Spinner />
+                <Loader />
 
             <h1>Witaj, {userRole}!</h1>
 
