@@ -1,0 +1,10 @@
+@import "./params";
+
+.hero-home-section {
+  background: url("@/assets/hero-bg.jpg") no-repeat top;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  @extend .bg-black-apla;
+  @extend .img-zoom-in;
+}

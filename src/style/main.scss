@@ -43,7 +43,7 @@ body {
   overflow-x: hidden;
 
   section {
-    margin: $spacing-lg 0 0;
+    padding: $spacing-lg 0 0;
   }
 
 }
@@ -103,6 +103,21 @@ ul.MuiList-root {
 }
 // end
 
+.shinning-text {
+  background: linear-gradient(90deg, #000, #fff, #000) no-repeat;
+  background-size: 80%;
+  display: inline-block;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: text-animation-shinning 4s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+.img-zoom-in {
+  object-fit: cover;
+  animation: zoomIn 4s ease-in-out;
+}
+
 // Animations
 
 @keyframes text-animation {
@@ -123,5 +138,27 @@ ul.MuiList-root {
     opacity: 0;
   }
 }
+
+@keyframes text-animation-shinning {
+  0% {
+    background-position: -500%;
+  }
+  50% {
+     background-position: 500%;
+  }
+  100% {
+    background-position: -500%;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    background-size: 140%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}
+
 
 

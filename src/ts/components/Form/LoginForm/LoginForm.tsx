@@ -50,7 +50,7 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={onSubmit} className="login_form">
-            <h2>Logowanie</h2>
+            <h2>Logowanie - organizatorzy</h2>
 
             <TextField
                 label="Email"

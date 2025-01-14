@@ -118,3 +118,7 @@ $spacing-xxl: 150px;
     text-decoration: underline;
   }
 }
+.img-zoom-in {
+  object-fit: cover;
+  animation: zoomIn 3s ease-in-out forwards;
+}

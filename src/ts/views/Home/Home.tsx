@@ -1,10 +1,10 @@
 import Head from "@/ts/helpers/Head.tsx";
-import Loader from "@/ts/components/Loader.tsx";
-import { RootState } from "@/redux/store.ts";
-import { useSelector } from "react-redux";
+// import Loader from "@/ts/components/Loader.tsx";
+
+import HeroHome from "@/ts/views/Home/HeroHome.tsx";
 
 const Home = () => {
-    const { userRole } = useSelector((state: RootState) => state.auth);
+
     return (
         <>
             <Head
@@ -13,12 +13,11 @@ const Home = () => {
                 keywords="Ślub, wesele, aplikacja ślubna"
                 robots="index, follow"
             />
-            <div className="general-container">
-                <Loader />
 
-            <h1>Witaj, {userRole}!</h1>
 
-            </div>
+                <HeroHome />
+
+
         </>
     );
 };
