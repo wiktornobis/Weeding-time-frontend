@@ -87,8 +87,7 @@ export default function LoginFormGuest() {
             </Button>
 
             <h4>Zaloguj się jako organizator wesela</h4>
-            <a href="/logowanie-organizator">Zaloguj się</a>
-
+            <Button onClick={() => navigate("/logowanie-organizator")}>Zaloguj się</Button>
         </form>
     );
 }

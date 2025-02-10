@@ -18,8 +18,21 @@ import NotFound from "@/ts/views/NotFound/NotFound.tsx";
 import Registration from "@/ts/views/Registration/Registration.tsx";
 import PasswordRemind from "@/ts/views/PasswordRemind/PasswordRemind.tsx";
 import LoginGuest from "@/ts/views/LoginGuest/LoginGuest.tsx";
+import { useEffect, useState } from "react";
+import PreLoaderWebsite from "@/ts/components/PreLoaderWebsite.tsx";
 
 const App = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 4000);
+    }, []);
+
+    if (loading) {
+        return <PreLoaderWebsite />;
+    }
 
     return (
         <BrowserRouter>

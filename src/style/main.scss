@@ -47,6 +47,9 @@ body {
   }
 
 }
+:root {
+  --text-color: $color-white;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -115,7 +118,7 @@ ul.MuiList-root {
 }
 .img-zoom-in {
   object-fit: cover;
-  animation: zoomIn 4s ease-in-out;
+  animation: zoomIn 4s cubic-bezier(0.75, 0, 0.25, 0);
 }
 
 // Animations
@@ -159,6 +162,7 @@ ul.MuiList-root {
     background-size: 100%;
   }
 }
+
 
 
 

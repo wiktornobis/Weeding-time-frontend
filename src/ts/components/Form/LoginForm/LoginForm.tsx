@@ -93,13 +93,13 @@ export default function LoginForm() {
             </Button>
 
             <h4>Nie pamiętasz hasła?</h4>
-            <a href="/przypomnienie-hasla">Zresetuj hasło</a>
+            <Button onClick={() => navigate("/przypomnienie-hasla")}>Zresetuj hasło</Button>
 
             <h4>Nie posiadasz jeszcze konta?</h4>
-            <a href="/rejestracja">Zarejestruj się</a>
+            <Button onClick={() => navigate("/rejestracja")}>Zarejestruj się</Button>
 
             <h4>Zaloguj się jako gość</h4>
-            <a href="/logowanie">Zaloguj się</a>
+            <Button onClick={() => navigate("/logowanie")}>Zaloguj się</Button>
         </form>
     );
 }

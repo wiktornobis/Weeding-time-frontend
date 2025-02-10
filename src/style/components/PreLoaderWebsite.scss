@@ -1,0 +1,70 @@
+@import "../params";
+
+.preloader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: backgroundChange 6s step-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  //.typewriter-text {
+  //  border-right: solid 3px $color-quaternary;
+  //  white-space: nowrap;
+  //  overflow: hidden;
+  //  font-family: "Source Code Pro", monospace;
+  //  animation: animated-text 4s steps(29, end) 1s 1 normal both,
+  //  animated-cursor 600ms steps(29, end) infinite;
+  //  color: var(--text-color);
+  //}
+}
+svg {
+  &.weddingLetters {
+    position: absolute;
+    margin-left: $spacing-xs;
+  }
+}
+svg path {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: none;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes backgroundChange {
+  0%, 100% {
+    background-color: $color-tertiary;
+  }
+}
+
+@keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 240px;
+  }
+}
+@keyframes animated-cursor {
+  from {
+    border-right-color: $color-quaternary;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}

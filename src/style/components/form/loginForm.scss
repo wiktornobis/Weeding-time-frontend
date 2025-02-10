@@ -44,9 +44,11 @@
       font-size: 12px;
       color: $color-text;
     }
-    a {
+    button {
       font-size: 12px;
       color: $color-primary-dark !important;
+      padding: .5rem 0;
+
       @extend .text-underline;
     }
   }

@@ -4,13 +4,13 @@
 $color-white: #ffffff;
 $color-primary: #8739F9;
 $color-secondary: #37B9F1;
-$color-tertiary: #F2F5F5;
-$color-quaternary: #1d1917;
+$color-tertiary: #ced1bf;
+$color-quaternary: #1F1F1F;
 
 $color-primary-dark: #BB86FC;
 $color-secondary-dark: #4FC3F7;
 $color-tertiary-dark: #B0BEC5;
-$color-quaternary-dark: #121212;
+$color-quaternary-dark: #434343;
 
 $color-text: #565360;
 $color-text-label: #908E9B;
@@ -120,5 +120,5 @@ $spacing-xxl: 150px;
 }
 .img-zoom-in {
   object-fit: cover;
-  animation: zoomIn 3s ease-in-out forwards;
+  animation: zoomIn 2s cubic-bezier(0.75, 0.1, 0.75, 0.1) forwards;
 }

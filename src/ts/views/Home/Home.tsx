@@ -1,6 +1,5 @@
 import Head from "@/ts/helpers/Head.tsx";
 // import Loader from "@/ts/components/Loader.tsx";
-
 import HeroHome from "@/ts/views/Home/HeroHome.tsx";
 
 const Home = () => {
